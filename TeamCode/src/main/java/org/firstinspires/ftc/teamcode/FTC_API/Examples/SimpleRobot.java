@@ -1,7 +1,8 @@
 package org.firstinspires.ftc.teamcode.FTC_API.Examples;
 
 import com.qualcomm.hardware.motors.NeveRest20Gearmotor;
-import com.qualcomm.robotcore.hardware.configuration.MotorConfigurationType;
+import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
+
 import org.firstinspires.ftc.teamcode.FTC_API.Robot.RobotBase;
 
 /**

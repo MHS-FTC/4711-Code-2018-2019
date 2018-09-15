@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
  * Created by Ethan Hampton on 8/19/17.
  * Example Autonomous
  */
-@Disabled
+
 @Autonomous(name = "Simple Autonomous")
 public class SimpleAutonomous extends AutonomousBase {
     private SimpleRobot bot = new SimpleRobot();

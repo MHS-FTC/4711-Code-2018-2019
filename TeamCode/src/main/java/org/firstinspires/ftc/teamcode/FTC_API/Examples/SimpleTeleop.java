@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
  *
  * Shows example of how to do a simple teleop method
  */
-@Disabled
+
 @TeleOp(name = "SimpleTeleop")
 public class SimpleTeleop extends OpMode{
     private SimpleRobot robot = new SimpleRobot();
