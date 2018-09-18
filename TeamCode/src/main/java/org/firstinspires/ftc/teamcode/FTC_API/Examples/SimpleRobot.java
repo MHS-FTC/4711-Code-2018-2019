@@ -13,8 +13,7 @@ import org.firstinspires.ftc.teamcode.FTC_API.Robot.RobotBase;
 
 class SimpleRobot extends RobotBase {
     Drive drive = new Drive()
-            .setMotorNames("Left_Motor", "Right_Motor")
-            .setMotorType(MotorConfigurationType.getMotorType(NeveRest20Gearmotor.class));
+            .setMotorNames("left", "right");
 
     SimpleRobot() {
         addSubSystem(drive);
