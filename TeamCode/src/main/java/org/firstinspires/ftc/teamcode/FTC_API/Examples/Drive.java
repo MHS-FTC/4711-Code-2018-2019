@@ -34,15 +34,9 @@ public class Drive extends SidedDriveSystemTemplate {
         return this;
     }
 
-    public Drive setMotorType(MotorConfigurationType type) {
-        leftMotor.setMotorType(type);
-        rightMotor.setMotorType(type);
-        return this;
-    }
-
     public void drive(double leftPower, double rightPower) {
         leftMotor.setPower(leftPower);
-        rightMotor.setPower(rightPower);
+        rightMotor.setPower(-rightPower);//Reverse the right side so it drives forwards
     }
 
     @Override

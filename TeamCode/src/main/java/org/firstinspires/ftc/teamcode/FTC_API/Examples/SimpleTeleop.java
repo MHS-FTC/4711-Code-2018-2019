@@ -23,6 +23,6 @@ public class SimpleTeleop extends OpMode {
     public void loop() {
         robot.tick();
 
-        robot.drive.drive(gamepad1.left_stick_y * 0.4, gamepad1.right_stick_y * 0.4);
+        robot.drive.drive(gamepad1.left_stick_y * 0.35, gamepad1.right_stick_y * 0.35);
     }
 }
