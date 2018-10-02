@@ -15,7 +15,7 @@ private Robot robot = new Robot();
     @Override
     public void loop() {
         robot.tick();
-
+/*
         if(gamepad1.x){
             robot.intake.startIntake();
 
@@ -27,7 +27,7 @@ private Robot robot = new Robot();
         robot.intake.rotateOut(gamepad1.left_stick_y);
 
         robot.intake.rotateWrist(gamepad1.right_stick_y);
-
+*/
 
     }
 }
