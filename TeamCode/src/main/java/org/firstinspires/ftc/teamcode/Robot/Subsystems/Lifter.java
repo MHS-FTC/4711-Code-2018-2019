@@ -36,4 +36,8 @@ public class Lifter extends SubSystem {
         lift.setPower(-LIFT_SPEED);
     }
 
+    public void liftStop(){
+        lift.setPower(0);
+    }
+
 }
