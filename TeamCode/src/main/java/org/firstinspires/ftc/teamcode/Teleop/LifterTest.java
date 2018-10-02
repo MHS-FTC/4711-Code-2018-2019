@@ -17,11 +17,11 @@ public class LifterTest extends OpMode {
         robot.tick();
 
         if(gamepad1.dpad_up){
-            robot.lifter.liftUp(1);
+            robot.lifter.liftUp();
 
         }
         if(gamepad1.dpad_down){
-            robot.lifter.liftDown(-1);
+            robot.lifter.liftDown();
         }
 
     }

@@ -28,12 +28,12 @@ public class Lifter extends SubSystem {
 
     }
 
-    public void liftUp(double speed) {
+    public void liftUp() {
         lift.setPower(LIFT_SPEED);
     }
 
-    public void liftDown (double speed) {
-        lift.setPower(LIFT_SPEED);
+    public void liftDown () {
+        lift.setPower(-LIFT_SPEED);
     }
 
 }
