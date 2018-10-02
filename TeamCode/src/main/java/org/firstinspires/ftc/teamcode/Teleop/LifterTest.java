@@ -25,6 +25,9 @@ public class LifterTest extends OpMode {
         if(gamepad1.dpad_down){
             robot.lifter.liftDown();
         }
+        if (gamepad1.x) {
+            robot.lifter.liftStop();
+        }
 
     }
 }
