@@ -16,9 +16,9 @@ public class StraightAutonomous extends AutonomousBase {
             {new Wait().setWaitTime(300)},
 
 
-            {new CallFunction().setFunction(() -> bot.lifter.liftUp())},
+            {new CallFunction().setFunction(() -> bot.fling.flingUp())},
             {new Wait().setWaitTime(1500)},
-            {new CallFunction().setFunction(() -> bot.lifter.liftStop())},
+            {new CallFunction().setFunction(() -> bot.fling.flingStop())},
     };
     @Override
     public void init() {
