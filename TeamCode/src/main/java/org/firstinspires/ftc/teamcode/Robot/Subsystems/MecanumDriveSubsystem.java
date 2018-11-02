@@ -24,6 +24,7 @@ public class MecanumDriveSubsystem extends SidedDriveSystemTemplate {
     private String rightFrontMotorName;
     private String leftBackMotorName;
     private String rightBackMotorName;
+    private boolean usingEncoders = false;
 
     @Override
     public boolean init(HardwareMap hardwareDevices) {
@@ -32,10 +33,14 @@ public class MecanumDriveSubsystem extends SidedDriveSystemTemplate {
         leftBackMotor = hardwareDevices.dcMotor.get(leftBackMotorName);
         rightBackMotor = hardwareDevices.dcMotor.get(rightBackMotorName);
 
-        leftFrontMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftBackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        //leftFrontMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        //leftBackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        runUsingAllEncoders();//use encoders to give more precise speed
+        if(usingEncoders) {
+            runUsingAllEncoders();//use encoders to give more precise speed
+        }else{
+            runNotUsingAllEncoders();
+        }
         return true;
     }
 
@@ -80,8 +85,8 @@ public class MecanumDriveSubsystem extends SidedDriveSystemTemplate {
     public void driveMecanum(double forward, double rotate, double strafe) {
         double frontLeft = forward + rotate + strafe;
         double rearLeft = forward + rotate - strafe;
-        double frontRight = forward - rotate - strafe;
-        double rearRight = forward - rotate + strafe;
+        double frontRight = forward - rotate + strafe;
+        double rearRight = forward - rotate - strafe;
 
         leftFrontMotor.setPower(frontLeft);
         leftBackMotor.setPower(rearLeft);
@@ -102,5 +107,8 @@ public class MecanumDriveSubsystem extends SidedDriveSystemTemplate {
         return this;
     }
 
-
+    public MecanumDriveSubsystem setUsingEncoders(boolean usingEncoders){
+        this.usingEncoders = usingEncoders;
+        return this;
+    }
 }
