@@ -8,20 +8,20 @@ import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.CallFunction;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
-@Autonomous(name = "DeployPark")
+@Autonomous(name = "DropAndRoll")
 public class DropAndRoll extends AutonomousBase {
     private Robot bot = new Robot();
     private Module[][] steps = new Module[][]{
             {new CallFunction().setFunction(() -> bot.lifter.liftUp())},
-            {new Wait().setWaitTime(1500)},
+            {new Wait().setWaitTime(4700)},
             {new CallFunction().setFunction(() -> bot.lifter.liftStop())},
 
-            {new DriveTime().setSpeeds(-0.3,0,0).setTime(1200)},
-            {new Wait().setWaitTime(300)},
+            {new DriveTime().setSpeeds(-0.3,0,0).setTime(1500)},
+            {new Wait().setWaitTime(400)},
 
 
             {new CallFunction().setFunction(() -> bot.fling.flingUp())},
-            {new Wait().setWaitTime(2000)},
+            {new Wait().setWaitTime(1500)},
             {new CallFunction().setFunction(() -> bot.fling.flingStop())},
 
             {new DriveTime().setSpeeds(0,0.3,0).setTime(400)},

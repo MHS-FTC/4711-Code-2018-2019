@@ -29,11 +29,11 @@ public class Lifter extends SubSystem {
     }
 
     public void liftUp() {
-        lift.setPower(LIFT_SPEED);
+        lift.setPower(-LIFT_SPEED);
     }
 
     public void liftDown () {
-        lift.setPower(-LIFT_SPEED);
+        lift.setPower(LIFT_SPEED);
     }
 
     public void liftStop(){

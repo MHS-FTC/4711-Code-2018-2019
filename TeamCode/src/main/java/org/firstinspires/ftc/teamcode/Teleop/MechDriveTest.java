@@ -18,6 +18,6 @@ public class MechDriveTest extends OpMode {
         robot.tick();
         //the y direction of the joysticks needs to be reversed
         //Commented out because of diffrence in method signature
-        robot.drive.driveMecanum(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
+        robot.drive.driveMecanum(gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x);
     }
 }
