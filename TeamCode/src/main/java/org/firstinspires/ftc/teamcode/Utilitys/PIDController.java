@@ -38,7 +38,7 @@ public class PIDController {
     private double settlingTime;
 
     private boolean inverted = false;
-    private boolean absSetPoint = false;
+    private boolean absSetPoint = true;
     private boolean noOscillation = false;
     private double minTarget = 0.0;
     private double maxTarget = 0.0;
