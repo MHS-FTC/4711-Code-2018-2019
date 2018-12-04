@@ -1,0 +1,103 @@
+Index: TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Autonomous/DropAndRoll.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Autonomous/DropAndRoll.java	(date 1540864300000)
++++ TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Autonomous/DropAndRoll.java	(date 1540864310772)
+@@ -8,20 +8,20 @@
+ import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
+ import org.firstinspires.ftc.teamcode.Robot.Robot;
+ 
+-@Autonomous(name = "DeployPark")
++@Autonomous(name = "DropAndRoll")
+ public class DropAndRoll extends AutonomousBase {
+     private Robot bot = new Robot();
+     private Module[][] steps = new Module[][]{
+             {new CallFunction().setFunction(() -> bot.lifter.liftUp())},
+-            {new Wait().setWaitTime(1500)},
++            {new Wait().setWaitTime(4700)},
+             {new CallFunction().setFunction(() -> bot.lifter.liftStop())},
+ 
+-            {new DriveTime().setSpeeds(-0.3,0,0).setTime(1200)},
+-            {new Wait().setWaitTime(300)},
++            {new DriveTime().setSpeeds(-0.3,0,0).setTime(1500)},
++            {new Wait().setWaitTime(400)},
+ 
+ 
+             {new CallFunction().setFunction(() -> bot.fling.flingUp())},
+-            {new Wait().setWaitTime(2000)},
++            {new Wait().setWaitTime(1500)},
+             {new CallFunction().setFunction(() -> bot.fling.flingStop())},
+ 
+             {new DriveTime().setSpeeds(0,0.3,0).setTime(400)},
+Index: TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Robot/Subsystems/Lifter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Robot/Subsystems/Lifter.java	(date 1540864300000)
++++ TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Robot/Subsystems/Lifter.java	(date 1540864310774)
+@@ -29,13 +29,13 @@
+     }
+ 
+     public void liftUp() {
+-        lift.setPower(LIFT_SPEED);
+-    }
+-
+-    public void liftDown () {
+         lift.setPower(-LIFT_SPEED);
+     }
+ 
++    public void liftDown () {
++        lift.setPower(LIFT_SPEED);
++    }
++
+     public void liftStop(){
+         lift.setPower(0);
+     }
+Index: TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Teleop/DriveLiftTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Teleop/DriveLiftTest.java	(date 1540864300000)
++++ TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Teleop/DriveLiftTest.java	(date 1540864310776)
+@@ -14,7 +14,7 @@
+ 
+     @Override
+     public void loop() {
+-        robot.drive.driveTank(gamepad1.left_stick_y,gamepad1.right_stick_y);
++        robot.drive.driveTank(gamepad1.right_stick_y,gamepad1.left_stick_y);
+ 
+         if (gamepad1.dpad_up) {
+             robot.lifter.liftUp();
+@@ -23,5 +23,13 @@
+         }else{
+             robot.lifter.liftStop();
+         }
++
++        if (gamepad1.y) {
++            robot.fling.flingUp();
++        } else if (gamepad1.a) {
++            robot.fling.flingDown();
++        }else{
++            robot.fling.flingStop();
++        }
+     }
+ }
+Index: TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Teleop/MechDriveTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Teleop/MechDriveTest.java	(date 1540864300000)
++++ TeamCode/src/main/java/org/firstinspires/ftc/teamcode/Teleop/MechDriveTest.java	(date 1540867202047)
+@@ -18,6 +18,6 @@
+         robot.tick();
+         //the y direction of the joysticks needs to be reversed
+         //Commented out because of diffrence in method signature
+-        robot.drive.driveMecanum(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
++        robot.drive.driveMecanum(gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x);
+     }
+ }
