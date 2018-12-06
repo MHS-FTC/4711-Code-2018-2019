@@ -15,9 +15,9 @@ import java.util.HashMap;
  */
 
 public class RobotBase {
-
     private HashMap<String, SubSystem> subSystems = new HashMap<>();
     private String driveSystem = "";
+    public HardwareMap hardwareMap;
 
     private ElapsedTime time = new ElapsedTime();
 
@@ -79,6 +79,7 @@ public class RobotBase {
             }
         }
 
+        this.hardwareMap = hardwareMap;
         startTime();//start time keeping
         return noErrors;
     }
