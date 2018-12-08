@@ -27,6 +27,20 @@ public class MechDriveTest extends OpMode {
         } else {
             robot.lifter.liftStop();
         }
+        //robot lifter
+
+        if(gamepad2.right_bumper ){
+            robot.fling.flingUp();
+
+        }
+        else if(gamepad1.left_bumper ){
+            robot.fling.flingDown();
+        }
+        else {
+            robot.fling.flingStop();
+        }
+        //unobtainum intaker
+
 
     }
 }
