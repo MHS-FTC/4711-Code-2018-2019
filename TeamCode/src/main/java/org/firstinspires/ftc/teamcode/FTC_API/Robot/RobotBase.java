@@ -79,7 +79,7 @@ public class RobotBase {
             }
         }
 
-        this.hardwareMap = hardwareMap;
+        this.hardwareMap = hardwareMap;//add hardware map to robot for easy access
         startTime();//start time keeping
         return noErrors;
     }
