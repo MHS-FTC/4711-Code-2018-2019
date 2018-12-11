@@ -57,14 +57,16 @@ public class PidEncoderDrive extends Module {
 
 
         //sets targets
-        int leftTarget = (int) (leftRotations * drive.getMotorType().getTicksPerRev());
-        int rightTarget = (int) (rightRotations * drive.getMotorType().getTicksPerRev());
+        long leftTarget = (int) (leftRotations * drive.getMotorType().getTicksPerRev());
+        long rightTarget = (int) (rightRotations * drive.getMotorType().getTicksPerRev());
 
         drive.resetAllEncoders();
 
-        drive.setLeftSideTarget(leftTarget);//TODO may not need this
-        drive.setRightSideTarget(rightTarget);
-        drive.runToPositionAllEncoders();
+        //drive.setLeftSideTarget(leftTarget);//TODO may not need this
+        //drive.setRightSideTarget(rightTarget);
+        //drive.runToPositionAllEncoders();
+        drive.runUsingAllEncoders();
+
 
         leftController.setTarget(leftTarget, 0);//set PID controllers
         rightController.setTarget(rightTarget, 0);
@@ -114,6 +116,8 @@ public class PidEncoderDrive extends Module {
         rightSpeed = rightController.getOutput(currentRight / motorsRight);
         drive.driveTank(leftSpeed, rightSpeed);
 
+        telemetry.addLine("Left Speed:" + leftSpeed + ", Right Speed:" + rightSpeed);
+
 
         //stop if on target, and end if both are on target
         if (leftController.isOnTarget()) {
@@ -149,14 +153,17 @@ public class PidEncoderDrive extends Module {
         positionInArray = 0;
         return this;
     }
-    
+
 
     public PidEncoderDrive setPID(double p, double i, double d, double settlingTime) {
-        leftController = new PIDController(p, i, d, 0, 15, settlingTime);
-        rightController = new PIDController(p, i, d, 0, 15, settlingTime);
+        leftController = new PIDController(p, i, d, 0, 150, settlingTime);
+        rightController = new PIDController(p, i, d, 0, 150, settlingTime);
 
         leftController.setNoOscillation(true);//we don't want to change direction to correct to target
         rightController.setNoOscillation(true);
+
+        leftController.setOutputRange(-0.5, 0.5);
+        rightController.setOutputRange(-0.5, 0.5);
         return this;
     }
 
