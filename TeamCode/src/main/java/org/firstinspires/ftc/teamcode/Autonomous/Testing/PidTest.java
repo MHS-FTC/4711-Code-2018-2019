@@ -1,15 +1,10 @@
-package org.firstinspires.ftc.teamcode.Autonomous;
+package org.firstinspires.ftc.teamcode.Autonomous.Testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import org.firstinspires.ftc.teamcode.Autonomous.Modules.DriveTime;
-import org.firstinspires.ftc.teamcode.Autonomous.Modules.OLDEncoderDrive;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.PidEncoderDrive;
-import org.firstinspires.ftc.teamcode.Autonomous.Modules.Wait;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.AutonomousBase;
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.CallFunction;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.Robot.MechBot;
-import org.firstinspires.ftc.teamcode.Robot.Robot;
 
 @Autonomous(name = "PID Test")
 public class PidTest extends AutonomousBase {

@@ -21,11 +21,6 @@ public class DropAndRoll extends AutonomousBase {
             {new DriveTime().setSpeeds(-0.3,0,0).setTime(1500)},
             {new Wait().setWaitTime(400)},
 
-
-            {new CallFunction().setFunction(() -> bot.fling.flingUp())},
-            {new Wait().setWaitTime(1500)},
-            {new CallFunction().setFunction(() -> bot.fling.flingStop())},
-
             {new DriveTime().setSpeeds(0,0.3,0).setTime(400)},
 
 
