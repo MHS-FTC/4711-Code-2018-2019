@@ -2,61 +2,60 @@ package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
 
 public class Intake extends SubSystem
 {
 
-    private String spinName;
-    private String wristName;
-    private String intakeName;
+    private String armName;
+    private String lockName;
+    private String releaseName;
 
-    private DcMotor spin;
-    private DcMotor wrist;
-    private DcMotor intake;
+    private DcMotor arm;
+    private Servo lock;
+    private Servo release;
 
-    private final double INTAKE_SPEED = 0.7;
+    private final double ARM_SPEED = 0.7;
+
+    private final double LOCK_UP = 1;
+    private final double LOCK_DOWN = 0;
+
+    private final double RELEASE = 1;
+    private final double UNRELEASE = 0;
+
 
     @Override
     public boolean init(HardwareMap hardwareDevices) {
 
-        spin = hardwareDevices.dcMotor.get(spinName);
-        wrist = hardwareDevices.dcMotor.get(wristName);
-        intake = hardwareDevices.dcMotor.get(intakeName);
+        arm = hardwareDevices.dcMotor.get(armName);
+        lock = hardwareDevices.servo.get(lockName);
+        release = hardwareDevices.servo.get(releaseName);
 
         return true;
     }
 
-    public Intake setMotorNames(String spin, String wrist, String intake){
-        spinName = spin;
-        wristName = wrist;
-        intakeName = intake;
-
+    public Intake setMotorNames(String arm, String lock, String release ){
+        lockName = lock;
+        armName = arm;
+        releaseName = release;
         return this;
 
     }
 
-    public void rotateWrist(double speed) {
-        wrist.setPower(speed);
-    }
+    public void driveArm(double up, double down) {
+        double armControl = up + down;
 
-    public void rotateOut(double speed) {
-        spin.setPower(speed);
-    }
-
-    public void startIntake() {
-        intake.setPower(INTAKE_SPEED);
+        arm.setPower(armControl);
 
     }
 
-    public void stopIntake() {
-        intake.setPower(0);
-    }
+    public void lockUp() { lock.setPosition(LOCK_UP); }
 
-    public void reverseIntake() {
-        intake.setPower(-INTAKE_SPEED);
-    }
+    public void lockDown() {lock.setPosition(LOCK_DOWN); }
 
+    public void releaseUp(){release.setPosition(RELEASE); }
 
+    public void releaseDown() {release.setPosition((UNRELEASE));}
 }
