@@ -32,12 +32,13 @@ public class DriveLiftTest extends OpMode {
         } else {
             robot.fling.flingStop();
         }
-
+/*
         if (gamepad1.dpad_right) {
             robot.wrist.wristDump();
         }
         else if (gamepad1.dpad_left){
             robot.wrist.wristLoad();
         }
+        */
     }
 }

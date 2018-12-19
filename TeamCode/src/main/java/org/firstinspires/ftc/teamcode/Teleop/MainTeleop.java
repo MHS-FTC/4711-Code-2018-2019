@@ -2,12 +2,11 @@ package org.firstinspires.ftc.teamcode.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import org.firstinspires.ftc.teamcode.Robot.CompRobot;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
 @TeleOp(name = "MAIN Teleop")
 public class MainTeleop extends OpMode {
-     private CompRobot robot = new CompRobot();
+     private Robot robot = new Robot();
 
     @Override
     public void init() {
@@ -31,5 +30,22 @@ public class MainTeleop extends OpMode {
             robot.lifter.liftStop();
         }
 
+        if(gamepad2.a) {
+            robot.intake.lockUp();
+        }
+        if (gamepad2.b){
+            robot.intake.lockDown();
+        }
+
+        if (gamepad2.right_bumper && gamepad2.left_bumper) {
+            robot.intake.releaseDown();
+        }
+        else{
+            robot.intake.releaseUp();
+        }
+
+        robot.intake.intakeSpeed(gamepad2.right_stick_y);
+
+        robot.intake.driveArm(gamepad2.left_stick_y);
     }
 }
