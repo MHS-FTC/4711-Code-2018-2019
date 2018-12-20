@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -12,18 +13,22 @@ public class Intake extends SubSystem
     private String armName;
     private String lockName;
     private String releaseName;
+    private String intakeName;
 
     private DcMotor arm;
     private Servo lock;
     private Servo release;
+    private CRServo intake;
+
 
     private final double ARM_SPEED = 0.7;
 
-    private final double LOCK_UP = 1;
-    private final double LOCK_DOWN = 0;
+    private final double LOCK_UP = 0.95;
+    private final double LOCK_DOWN = 0.07;
 
-    private final double RELEASE = 1;
-    private final double UNRELEASE = 0;
+    private final double RELEASE = 0.95;
+    private final double UNRELEASE = 0.05;
+
 
 
     @Override
@@ -32,23 +37,28 @@ public class Intake extends SubSystem
         arm = hardwareDevices.dcMotor.get(armName);
         lock = hardwareDevices.servo.get(lockName);
         release = hardwareDevices.servo.get(releaseName);
-
+        intake = hardwareDevices.crservo.get(intakeName);
         return true;
     }
 
-    public Intake setMotorNames(String arm, String lock, String release ){
+    public Intake setMotorNames(String arm, String lock, String release , String intake){
         lockName = lock;
         armName = arm;
         releaseName = release;
+        intakeName = intake;
         return this;
 
     }
 
-    public void driveArm(double up, double down) {
-        double armControl = up + down;
+    public void driveArm(double up) {
+        double armControl = up *0.8;
 
         arm.setPower(armControl);
 
+    }
+
+    public void intakeSpeed(double speed){
+        intake.setPower(speed);
     }
 
     public void lockUp() { lock.setPosition(LOCK_UP); }

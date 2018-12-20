@@ -33,8 +33,8 @@ public class MecanumDriveSubsystem extends SidedDriveSystemTemplate {
         leftBackMotor = hardwareDevices.dcMotor.get(leftBackMotorName);
         rightBackMotor = hardwareDevices.dcMotor.get(rightBackMotorName);
 
-        //leftFrontMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        //leftBackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftFrontMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftBackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         if(usingEncoders) {
             runUsingAllEncoders();//use encoders to give more precise speed

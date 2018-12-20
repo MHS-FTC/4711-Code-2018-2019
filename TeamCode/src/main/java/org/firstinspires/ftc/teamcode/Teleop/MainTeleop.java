@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import org.firstinspires.ftc.teamcode.Robot.CompRobot;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
 @TeleOp(name = "MAIN Teleop")
@@ -38,13 +37,15 @@ public class MainTeleop extends OpMode {
             robot.intake.lockDown();
         }
 
-        if (gamepad2. right_bumper && gamepad2.left_bumper) {
+        if (gamepad2.right_bumper && gamepad2.left_bumper) {
             robot.intake.releaseDown();
         }
         else{
             robot.intake.releaseUp();
         }
 
-        robot.intake.driveArm(gamepad2.left_stick_y, -gamepad2 .left_stick_y);
+        robot.intake.intakeSpeed(gamepad2.right_stick_y);
+
+        robot.intake.driveArm(gamepad2.left_stick_y);
     }
 }
