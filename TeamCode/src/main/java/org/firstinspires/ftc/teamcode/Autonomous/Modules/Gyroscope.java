@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.Util;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 
 public class Gyroscope extends Module {
-    boolean isDone = false;
+    private boolean isDone = false;
     private int targetDegrees = 0;
     private GyroSensor gyro;
     private boolean calibrate = true;
@@ -65,7 +65,7 @@ public class Gyroscope extends Module {
     }
 
     public int stop(){
-        robot.getDriveSystem().driveTank(0,0);//Stop subsystem
+        robot.getDriveSystem().driveTank(0,0);//Stop motors before continuing
         return positionInArray;
     }
 
