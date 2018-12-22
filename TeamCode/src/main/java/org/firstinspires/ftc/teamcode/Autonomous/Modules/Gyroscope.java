@@ -42,8 +42,14 @@ public class Gyroscope extends Module {
         telemetry.addLine("Heading Error: " + headingError);
         telemetry.addLine("Steering Error: " + driveSteering);
 
-        double leftPower = -midPower + driveSteering;
-        double rightPower = midPower - driveSteering;
+        double leftPower, rightPower;
+        if(headingError < 0) {
+            leftPower = -midPower + driveSteering;
+            rightPower = midPower - driveSteering;
+        }else{
+            leftPower = midPower + driveSteering;
+            rightPower = -midPower - driveSteering;
+        }
 
         leftPower = Range.clip(leftPower, -maxPower, maxPower);
         rightPower = Range.clip(rightPower, -maxPower, maxPower);
