@@ -155,15 +155,16 @@ public class PidEncoderDrive extends Module {
     }
 
 
-    public PidEncoderDrive setPID(double p, double i, double d, double settlingTime) {
-        leftController = new PIDController(p, i, d, 0, 150, settlingTime);
-        rightController = new PIDController(p, i, d, 0, 150, settlingTime);
+    public PidEncoderDrive setPID(double p, double i, double d, double settlingTime, int tolerance) {
+        leftController = new PIDController(p, i, d, 0, tolerance, settlingTime);
+        rightController = new PIDController(p, i, d, 0, tolerance, settlingTime);
 
         leftController.setNoOscillation(true);//we don't want to change direction to correct to target
         rightController.setNoOscillation(true);
 
-        leftController.setOutputRange(-0.5, 0.5);
-        rightController.setOutputRange(-0.5, 0.5);
+        final double max = 0.8;
+        leftController.setOutputRange(-max, max);
+        rightController.setOutputRange(-max, max);
         return this;
     }
 

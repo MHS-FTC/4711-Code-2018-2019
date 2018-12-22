@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.Robot.MechBot;
 public class PidTest extends AutonomousBase {
     private MechBot bot = new MechBot();
     private Module[][] steps = new Module[][]{
-            {new PidEncoderDrive().setWheelCircumference(12.56).setDistances(24,24).setPID(0.05,0,0,2)}
+            {new PidEncoderDrive().setWheelCircumference(12.56).setDistances(24,24).setPID(0.002,0.0004,0.0006,2,200)}
     };
     @Override
     public void init() {
