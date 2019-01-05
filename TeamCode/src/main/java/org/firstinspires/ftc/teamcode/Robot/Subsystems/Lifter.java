@@ -40,4 +40,7 @@ public class Lifter extends SubSystem {
         lift.setPower(0);
     }
 
+    public DcMotor getMotor(){
+        return lift;
+    }
 }
