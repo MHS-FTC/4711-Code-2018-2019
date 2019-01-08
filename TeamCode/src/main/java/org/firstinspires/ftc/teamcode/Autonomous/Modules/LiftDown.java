@@ -21,13 +21,13 @@ public class LiftDown extends Module {
 
     @Override
     public void tick() {
-        if(!lift.getMotor().isBusy()){
+        if (!lift.getMotor().isBusy()) {
             isDone = true;
         }
     }
 
     @Override
-    public int stop(){
+    public int stop() {
         lift.liftStop();
         lift.getMotor().setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         return positionInArray;

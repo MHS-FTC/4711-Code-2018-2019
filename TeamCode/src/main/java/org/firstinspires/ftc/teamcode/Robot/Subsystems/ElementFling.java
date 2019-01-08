@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
 import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
 
 public class ElementFling extends SubSystem {
@@ -22,7 +21,7 @@ public class ElementFling extends SubSystem {
         return true;
     }
 
-    public ElementFling setMotorNames(String fling){
+    public ElementFling setMotorNames(String fling) {
         flingName = fling;
         return this;
 
@@ -32,11 +31,11 @@ public class ElementFling extends SubSystem {
         fling.setPower(FLING_SPEED);
     }
 
-    public void flingDown () {
+    public void flingDown() {
         fling.setPower(-FLING_SPEED);
     }
 
-    public void flingStop(){
+    public void flingStop() {
         fling.setPower(0);
     }
 

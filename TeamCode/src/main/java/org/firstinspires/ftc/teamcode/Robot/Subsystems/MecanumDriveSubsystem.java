@@ -36,9 +36,9 @@ public class MecanumDriveSubsystem extends SidedDriveSystemTemplate {
         leftFrontMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         leftBackMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        if(usingEncoders) {
+        if (usingEncoders) {
             runUsingAllEncoders();//use encoders to give more precise speed
-        }else{
+        } else {
             runNotUsingAllEncoders();
         }
         return true;
@@ -107,7 +107,7 @@ public class MecanumDriveSubsystem extends SidedDriveSystemTemplate {
         return this;
     }
 
-    public MecanumDriveSubsystem setUsingEncoders(boolean usingEncoders){
+    public MecanumDriveSubsystem setUsingEncoders(boolean usingEncoders) {
         this.usingEncoders = usingEncoders;
         return this;
     }

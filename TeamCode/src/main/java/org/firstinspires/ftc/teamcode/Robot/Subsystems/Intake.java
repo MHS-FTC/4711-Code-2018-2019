@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-
 import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
 
 public class Intake extends SubSystem {
@@ -60,7 +59,7 @@ public class Intake extends SubSystem {
         arm.setTargetPosition((int) armTargetPosition);
     }
 
-    public int getArmTarget(){
+    public int getArmTarget() {
         return (int) armTargetPosition;
     }
 

@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.Gyroscope;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.PidEncoderDrive;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.Wait;
@@ -16,13 +15,13 @@ public class ClaimZoneAuto extends AutonomousBase {
     private Module[][] steps = new Module[][]{
             {new TensorFlowTest()},
             {
-                new Gyroscope().setTurn(-35).setCalibrate(true),
-                new Wait().setWaitTime(100),
-                new Gyroscope() .setTurn(35).setCalibrate(true)
+                    new Gyroscope().setTurn(-35).setCalibrate(true),
+                    new Wait().setWaitTime(100),
+                    new Gyroscope().setTurn(35).setCalibrate(true)
             },
             {new PidEncoderDrive().setWheelCircumference(12.56)
                     .setDistances(60, 60).setPID(0.002, 0.0004, 0.0006, 2, 200)},
-            {new Gyroscope() .setTurn(-120).setCalibrate(true)},
+            {new Gyroscope().setTurn(-120).setCalibrate(true)},
             {new PidEncoderDrive().setWheelCircumference(12.56)
                     .setDistances(77, 77).setPID(0.002, 0.0004, 0.0006, 2, 200)},
 
@@ -31,6 +30,6 @@ public class ClaimZoneAuto extends AutonomousBase {
 
     @Override
     public void init() {
-        init(hardwareMap,bot,steps);
+        init(hardwareMap, bot, steps);
     }
 }

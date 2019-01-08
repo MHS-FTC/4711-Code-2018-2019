@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.Teleop.Testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
@@ -18,11 +17,11 @@ public class LifterTest extends OpMode {
     public void loop() {
         robot.tick();
 
-        if(gamepad1.dpad_up){
+        if (gamepad1.dpad_up) {
             robot.lifter.liftUp();
 
         }
-        if(gamepad1.dpad_down){
+        if (gamepad1.dpad_down) {
             robot.lifter.liftDown();
         }
         if (gamepad1.x) {

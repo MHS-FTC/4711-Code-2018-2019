@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
-@TeleOp(name = "Drive+Lift",group = "test")
+@TeleOp(name = "Drive+Lift", group = "test")
 public class DriveLiftTest extends OpMode {
     private Robot robot = new Robot();
 

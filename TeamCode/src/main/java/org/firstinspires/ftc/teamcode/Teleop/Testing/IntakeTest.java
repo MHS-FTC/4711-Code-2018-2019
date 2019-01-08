@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode.Teleop.Testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
 public class IntakeTest extends OpMode {
-private Robot robot = new Robot();
+    private Robot robot = new Robot();
 
     @Override
     public void init() {

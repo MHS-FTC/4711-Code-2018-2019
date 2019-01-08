@@ -138,6 +138,7 @@ public class TensorFlowTest extends Module {
 
         // Loading trackables is not necessary for the Tensor Flow Object Detection engine.
     }
+
     /**
      * Initialize the Tensor Flow Object Detection engine.
      */

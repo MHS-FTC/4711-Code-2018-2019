@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Autonomous.Modules;
 
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.util.Range;
-import com.qualcomm.robotcore.util.Util;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 
 public class Gyroscope extends Module {
@@ -19,7 +18,7 @@ public class Gyroscope extends Module {
     public void start() {
         gyro = robot.hardwareMap.gyroSensor.get("gyro");
         gyro.resetZAxisIntegrator();
-        if(calibrate) {
+        if (calibrate) {
             telemetry.addLine("Calibrating Gyro...");
             gyro.calibrate();
             while (gyro.isCalibrating()) {
@@ -43,10 +42,10 @@ public class Gyroscope extends Module {
         telemetry.addLine("Steering Error: " + driveSteering);
 
         double leftPower, rightPower;
-        if(headingError < 0) {
+        if (headingError < 0) {
             leftPower = -midPower + driveSteering;
             rightPower = midPower - driveSteering;
-        }else{
+        } else {
             leftPower = midPower + driveSteering;
             rightPower = -midPower - driveSteering;
         }
@@ -64,8 +63,8 @@ public class Gyroscope extends Module {
 
     }
 
-    public int stop(){
-        robot.getDriveSystem().driveTank(0,0);//Stop motors before continuing
+    public int stop() {
+        robot.getDriveSystem().driveTank(0, 0);//Stop motors before continuing
         return positionInArray;
     }
 
@@ -79,7 +78,7 @@ public class Gyroscope extends Module {
         return this;
     }
 
-    public Gyroscope setCalibrate(boolean cal){
+    public Gyroscope setCalibrate(boolean cal) {
         calibrate = cal;
         return this;
     }

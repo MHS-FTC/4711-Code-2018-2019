@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-
 import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
 
 public class Lifter extends SubSystem {
@@ -22,7 +21,7 @@ public class Lifter extends SubSystem {
         return true;
     }
 
-    public Lifter setMotorNames(String lift){
+    public Lifter setMotorNames(String lift) {
         liftName = lift;
         return this;
 
@@ -32,15 +31,15 @@ public class Lifter extends SubSystem {
         lift.setPower(-LIFT_SPEED);
     }
 
-    public void liftDown () {
+    public void liftDown() {
         lift.setPower(LIFT_SPEED);
     }
 
-    public void liftStop(){
+    public void liftStop() {
         lift.setPower(0);
     }
 
-    public DcMotor getMotor(){
+    public DcMotor getMotor() {
         return lift;
     }
 }
