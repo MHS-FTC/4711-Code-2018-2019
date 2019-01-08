@@ -7,8 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
 
-public class Intake extends SubSystem
-{
+public class Intake extends SubSystem {
 
     private String armName;
     private String lockName;
@@ -21,7 +20,7 @@ public class Intake extends SubSystem
     private CRServo intake;
 
 
-    private final double ARM_SPEED = 0.7;
+    private final double ARM_SPEED = 0.8;
 
     private final double LOCK_UP = 0.95;
     private final double LOCK_DOWN = 0.07;
@@ -29,7 +28,7 @@ public class Intake extends SubSystem
     private final double RELEASE = 0.95;
     private final double UNRELEASE = 0.05;
 
-
+    private double armTargetPosition = 0;
 
     @Override
     public boolean init(HardwareMap hardwareDevices) {
@@ -38,10 +37,15 @@ public class Intake extends SubSystem
         lock = hardwareDevices.servo.get(lockName);
         release = hardwareDevices.servo.get(releaseName);
         intake = hardwareDevices.crservo.get(intakeName);
+
+        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        arm.setTargetPosition(0);
+        arm.setPower(ARM_SPEED);
+
         return true;
     }
 
-    public Intake setMotorNames(String arm, String lock, String release , String intake){
+    public Intake setMotorNames(String arm, String lock, String release, String intake) {
         lockName = lock;
         armName = arm;
         releaseName = release;
@@ -50,22 +54,33 @@ public class Intake extends SubSystem
 
     }
 
-    public void driveArm(double up) {
-        double armControl = up *0.8;
+    public void driveArm(double power) {
+        armTargetPosition += power * 15;
 
-        arm.setPower(armControl);
-
+        arm.setTargetPosition((int) armTargetPosition);
     }
 
-    public void intakeSpeed(double speed){
+    public int getArmTarget(){
+        return (int) armTargetPosition;
+    }
+
+    public void intakeSpeed(double speed) {
         intake.setPower(speed);
     }
 
-    public void lockUp() { lock.setPosition(LOCK_UP); }
+    public void lockUp() {
+        lock.setPosition(LOCK_UP);
+    }
 
-    public void lockDown() {lock.setPosition(LOCK_DOWN); }
+    public void lockDown() {
+        lock.setPosition(LOCK_DOWN);
+    }
 
-    public void releaseUp(){release.setPosition(RELEASE); }
+    public void releaseUp() {
+        release.setPosition(RELEASE);
+    }
 
-    public void releaseDown() {release.setPosition((UNRELEASE));}
+    public void releaseDown() {
+        release.setPosition((UNRELEASE));
+    }
 }

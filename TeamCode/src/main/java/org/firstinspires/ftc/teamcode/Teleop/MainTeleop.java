@@ -47,5 +47,6 @@ public class MainTeleop extends OpMode {
         robot.intake.intakeSpeed(gamepad2.right_stick_y);
 
         robot.intake.driveArm(gamepad2.left_stick_y);
+        telemetry.addLine("Arm Target:"+robot.intake.getArmTarget());
     }
 }
