@@ -6,7 +6,7 @@ import org.firstinspires.ftc.teamcode.Robot.Subsystems.Lifter;
 
 public class LiftDown extends Module {
     private Lifter lift;
-    private final double ROTATIONS = 5;
+    private final double ROTATIONS = 25.3;
     private boolean isDone = false;
 
     @Override

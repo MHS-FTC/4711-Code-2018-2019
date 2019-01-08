@@ -16,15 +16,15 @@ public class ClaimZoneAuto extends AutonomousBase {
     private Module[][] steps = new Module[][]{
             {new TensorFlowTest()},
             {
-                new Gyroscope().setTurn(-45).setCalibrate(true),
+                new Gyroscope().setTurn(-35).setCalibrate(true),
                 new Wait().setWaitTime(100),
-                new Gyroscope() .setTurn(45).setCalibrate(true)
+                new Gyroscope() .setTurn(35).setCalibrate(true)
             },
             {new PidEncoderDrive().setWheelCircumference(12.56)
-                    .setDistances(30, 30).setPID(0.002, 0.0004, 0.0006, 2, 200)},
-            {new Gyroscope() .setTurn(-90).setCalibrate(true)},
+                    .setDistances(60, 60).setPID(0.002, 0.0004, 0.0006, 2, 200)},
+            {new Gyroscope() .setTurn(-120).setCalibrate(true)},
             {new PidEncoderDrive().setWheelCircumference(12.56)
-                    .setDistances(75, 75).setPID(0.002, 0.0004, 0.0006, 2, 200)},
+                    .setDistances(77, 77).setPID(0.002, 0.0004, 0.0006, 2, 200)},
 
     };
 

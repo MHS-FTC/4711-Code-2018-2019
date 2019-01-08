@@ -3,6 +3,9 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.DriveTime;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.Gyroscope;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.LiftDown;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.PidEncoderDrive;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.Wait;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.AutonomousBase;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.CallFunction;
@@ -10,21 +13,19 @@ import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
 @Autonomous(name = "DropAndRoll")
-@Disabled
 public class DropAndRoll extends AutonomousBase {
     private Robot bot = new Robot();
     private Module[][] steps = new Module[][]{
-            {new CallFunction().setFunction(() -> bot.lifter.liftUp())},
-            {new Wait().setWaitTime(4700)},
-            {new CallFunction().setFunction(() -> bot.lifter.liftStop())},
 
-            {new DriveTime().setSpeeds(-0.3,0,0).setTime(1500)},
-            {new Wait().setWaitTime(400)},
+            {new LiftDown()},
+            {new Gyroscope() .setTurn(90).setCalibrate(true)},
+            {new PidEncoderDrive().setWheelCircumference(12.56)
+                    .setDistances(20, 20).setPID(0.002, 0.0004, 0.0006, 2, 200)},
+            {new Gyroscope() .setTurn(-90).setCalibrate(true)},
+            {new PidEncoderDrive().setWheelCircumference(12.56)
+                    .setDistances(60, 60).setPID(0.002, 0.0004, 0.0006, 2, 200)},
 
-            {new DriveTime().setSpeeds(0,0.3,0).setTime(400)},
 
-
-            {new DriveTime().setSpeeds(0.4,0,0).setTime(2000)}
     };
     @Override
     public void init() {

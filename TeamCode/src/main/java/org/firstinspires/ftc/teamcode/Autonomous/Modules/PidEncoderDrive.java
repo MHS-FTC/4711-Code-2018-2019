@@ -57,8 +57,8 @@ public class PidEncoderDrive extends Module {
 
 
         //sets targets
-        long leftTarget = (int) (leftRotations * drive.getMotorType().getTicksPerRev());
-        long rightTarget = (int) (rightRotations * drive.getMotorType().getTicksPerRev());
+        long leftTarget = -(int) (leftRotations * drive.getMotorType().getTicksPerRev());
+        long rightTarget = -(int) (rightRotations * drive.getMotorType().getTicksPerRev());
 
         drive.resetAllEncoders();
 
