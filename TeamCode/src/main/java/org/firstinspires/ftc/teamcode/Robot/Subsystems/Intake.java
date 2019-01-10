@@ -24,8 +24,8 @@ public class Intake extends SubSystem {
     private final double LOCK_UP = 0.95;
     private final double LOCK_DOWN = 0.07;
 
-    private final double RELEASE = 0.95;
-    private final double UNRELEASE = 0.05;
+    private final double RELEASE = 0.05;
+    private final double UNRELEASE = 0.95;
 
     private double armTargetPosition = 0;
 
@@ -36,10 +36,6 @@ public class Intake extends SubSystem {
         lock = hardwareDevices.servo.get(lockName);
         release = hardwareDevices.servo.get(releaseName);
         intake = hardwareDevices.crservo.get(intakeName);
-
-        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        arm.setTargetPosition(0);
-        arm.setPower(ARM_SPEED);
 
         return true;
     }
@@ -56,6 +52,9 @@ public class Intake extends SubSystem {
     public void driveArm(double power) {
         armTargetPosition += power * 15;
 
+        arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //arm.setTargetPosition(0);
+        arm.setPower(ARM_SPEED);
         arm.setTargetPosition((int) armTargetPosition);
     }
 
