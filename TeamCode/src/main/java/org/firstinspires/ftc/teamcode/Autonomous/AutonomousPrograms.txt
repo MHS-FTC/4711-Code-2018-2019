@@ -1,0 +1,3 @@
+ClaimZoneAuto="ClaimZoneAuto"=Start facing depot, deploy marker, hit mineral and park on crater
+
+DropAndRoll="DropAndRoll"=Deploy from lander on depot side, park on crater
