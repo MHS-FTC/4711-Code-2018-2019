@@ -15,11 +15,9 @@ public class DropAndRoll extends AutonomousBase {
 
             {new LiftDown()},
             {new Gyroscope().setTurn(90).setCalibrate(true)},
-            {new PidEncoderDrive().setWheelCircumference(12.56)
-                    .setDistances(20, 20).setPID(0.002, 0.0004, 0.0006, 2, 200)},
+            {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(20, 20)},
             {new Gyroscope().setTurn(-90).setCalibrate(false)},
-            {new PidEncoderDrive().setWheelCircumference(12.56)
-                    .setDistances(60, 60).setPID(0.002, 0.0004, 0.0006, 2, 200)},
+            {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(60, 60)},
 
 
     };

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.PidEncoderDrive;
 import org.firstinspires.ftc.teamcode.FTC_API.Robot.RobotBase;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.ElementFling;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.Intake;
@@ -13,6 +14,12 @@ public class Robot extends RobotBase {
     public MecanumDriveSubsystem drive = new MecanumDriveSubsystem().setMotorNames("leftFront", "rightFront", "leftBack", "rightBack");
     public ElementFling fling = null;//for programs
 
+    public PidEncoderDrive.PIDConfig PIDConfig = new PidEncoderDrive.PIDConfig()
+            .setPID(0.002, 0.0004, 0.0006)
+            .setSettlingTime(2)
+            .setTolerance(200)
+            .setMaxSpeed(0.8)
+            .setWheelCircumference(12.56);
 
     public Robot() {
 

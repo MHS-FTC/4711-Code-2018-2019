@@ -190,4 +190,85 @@ public class PidEncoderDrive extends Module {
             return current + 15 <= target || current - 15 <= target;
         }
     }
+
+    public PidEncoderDrive setConfig(PIDConfig config){
+        setWheelCircumference(config.wheelCircumference);
+        setPID(config.p, config.i, config.d, config.settlingTime, config.tolerance);
+        return this;
+    }
+    public static class PIDConfig {
+        private double p, i, d, wheelCircumference, settlingTime;
+        private int tolerance;
+        private double maxSpeed;
+
+        public PIDConfig setPID(double p, double i, double d){
+            this.p = p;
+            this.i = i;
+            this.d = d;
+            return this;
+        }
+
+        public double getP() {
+            return p;
+        }
+
+        public PIDConfig setP(double p) {
+            this.p = p;
+            return this;
+        }
+
+        public double getI() {
+            return i;
+        }
+
+        public PIDConfig setI(double i) {
+            this.i = i;
+            return this;
+        }
+
+        public double getD() {
+            return d;
+        }
+
+        public PIDConfig setD(double d) {
+            this.d = d;
+            return this;
+        }
+
+        public double getWheelCircumference() {
+            return wheelCircumference;
+        }
+
+        public PIDConfig setWheelCircumference(double wheelCircumference) {
+            this.wheelCircumference = wheelCircumference;
+            return this;
+        }
+
+        public double getSettlingTime() {
+            return settlingTime;
+        }
+
+        public PIDConfig setSettlingTime(double settlingTime) {
+            this.settlingTime = settlingTime;
+            return this;
+        }
+
+        public int getTolerance() {
+            return tolerance;
+        }
+
+        public PIDConfig setTolerance(int tolerance) {
+            this.tolerance = tolerance;
+            return this;
+        }
+
+        public double getMaxSpeed() {
+            return maxSpeed;
+        }
+
+        public PIDConfig setMaxSpeed(double maxSpeed) {
+            this.maxSpeed = maxSpeed;
+            return this;
+        }
+    }
 }
