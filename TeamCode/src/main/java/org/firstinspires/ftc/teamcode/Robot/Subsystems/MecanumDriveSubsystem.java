@@ -85,8 +85,8 @@ public class MecanumDriveSubsystem extends SidedDriveSystemTemplate {
     public void driveMecanum(double forward, double rotate, double strafe) {
         double frontLeft = forward + rotate + strafe;
         double rearLeft = forward + rotate - strafe;
-        double frontRight = forward - rotate + strafe;
-        double rearRight = forward - rotate - strafe;
+        double frontRight = forward - rotate - strafe;
+        double rearRight = forward - rotate + strafe;
 
         leftFrontMotor.setPower(frontLeft);
         leftBackMotor.setPower(rearLeft);
