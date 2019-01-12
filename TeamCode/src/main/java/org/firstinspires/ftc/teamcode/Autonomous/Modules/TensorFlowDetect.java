@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Autonomous.Testing;
+package org.firstinspires.ftc.teamcode.Autonomous.Modules;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 import java.util.List;
 
 
-public class TensorFlowTest extends Module {
+public class TensorFlowDetect extends Module {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";

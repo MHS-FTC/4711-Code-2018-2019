@@ -6,7 +6,7 @@ import org.firstinspires.ftc.teamcode.Autonomous.Modules.Gyroscope;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.PidEncoderDrive;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.TeamElementDrop;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.Wait;
-import org.firstinspires.ftc.teamcode.Autonomous.Testing.TensorFlowTest;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.TensorFlowDetect;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.AutonomousBase;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
@@ -15,7 +15,7 @@ import org.firstinspires.ftc.teamcode.Robot.Robot;
 public class ClaimZoneAuto extends AutonomousBase {
     private Robot bot = new Robot();
     private Module[][] steps = new Module[][]{
-            {new TensorFlowTest()},
+            {new TensorFlowDetect()},
             {
                     new Gyroscope().setTurn(-35).setCalibrate(true),
                     new Wait().setWaitTime(100),
