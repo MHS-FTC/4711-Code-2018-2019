@@ -42,7 +42,9 @@ public class TensorFlowDetect extends Module {
     private TFObjectDetector tfod;
 
     private boolean isDone = false;
-    private int mineralPos = -1;
+    private int mineralPos = 1;//By default assume the center position
+    private double startTime;
+    private final int TIMEOUT = 15 * 1000;//wait max of 15 seconds
 
 
     @Override
@@ -57,14 +59,16 @@ public class TensorFlowDetect extends Module {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
 
-        /** Wait for the game to begin */
+        /* Wait for the game to begin */
         telemetry.addData(">", "Press Play to start tracking");
         telemetry.update();
 
-        /** Activate Tensor Flow Object Detection. */
+        /* Activate Tensor Flow Object Detection. */
         if (tfod != null) {
             tfod.activate();
         }
+
+        startTime = robot.getTimeMilliseconds();
     }
 
     @Override
@@ -106,6 +110,14 @@ public class TensorFlowDetect extends Module {
                 }
                 telemetry.update();
             }
+        }
+
+        //code for timeout
+        //looking for balls can take a long time so make sure we don't spend whole autonomous looking for balls
+        if (startTime + TIMEOUT < robot.getTimeMilliseconds()) {
+            //have exceeded timeout
+            isDone = true;
+            telemetry.log().add("Tensorflow detection has exceeded timeout, moving on");
         }
     }
 
