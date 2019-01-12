@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Utilitys.Constants;
 import java.util.List;
 
 
-public class TensorFlowDetect extends Module {
+public class TensorFlowTwoDetect extends Module {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
@@ -46,10 +46,6 @@ public class TensorFlowDetect extends Module {
             telemetry.addData("Sorry!", "This device is not compatible with TFOD");
         }
 
-        /* Wait for the game to begin */
-        telemetry.addData(">", "Press Play to start tracking");
-        telemetry.update();
-
         /* Activate Tensor Flow Object Detection. */
         if (tfod != null) {
             tfod.activate();
@@ -66,10 +62,11 @@ public class TensorFlowDetect extends Module {
             List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
             if (updatedRecognitions != null) {
                 telemetry.addData("# Object Detected", updatedRecognitions.size());
-                if (updatedRecognitions.size() == 3) {
+                if (updatedRecognitions.size() == 2) {//only need to see two objects
                     int goldMineralX = -1;
                     int silverMineral1X = -1;
                     int silverMineral2X = -1;
+                    //update positions
                     for (Recognition recognition : updatedRecognitions) {
                         if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
                             goldMineralX = (int) recognition.getLeft();
@@ -79,20 +76,23 @@ public class TensorFlowDetect extends Module {
                             silverMineral2X = (int) recognition.getLeft();
                         }
                     }
-                    if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
-                        if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
-                            telemetry.addData("Gold Mineral Position", "Left");
-                            mineralPos = 0;
-                            isDone = true;
-                        } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
-                            telemetry.addData("Gold Mineral Position", "Right");
-                            mineralPos = 2;
-                            isDone = true;
-                        } else {
-                            telemetry.addData("Gold Mineral Position", "Center");
-                            mineralPos = 1;
-                            isDone = true;
-                        }
+
+                    //we are detecting the left two
+                    if (silverMineral1X != -1 && silverMineral2X != -1) {
+                        //gold must be on right if we can see both of the silver
+                        telemetry.addData("Gold Mineral Position", "Right");
+                        mineralPos = 2;
+                        isDone = true;
+                    } else if (goldMineralX < silverMineral1X) {
+                        //gold must be on left if the x value is less than the silver position
+                        telemetry.addData("Gold Mineral Position", "Left");
+                        mineralPos = 0;
+                        isDone = true;
+                    } else {
+                        //just assume center if its not left or right
+                        telemetry.addData("Gold Mineral Position", "Center");
+                        mineralPos = 1;
+                        isDone = true;
                     }
                 }
                 telemetry.update();
