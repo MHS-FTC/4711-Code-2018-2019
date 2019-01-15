@@ -17,7 +17,7 @@ public class ClaimZoneAuto extends AutonomousBase {
     private Module[][] steps = new Module[][]{
             {new TensorFlowDetect()},
             {
-                    new Gyroscope().setTurn(-35).setCalibrate(true),
+                    new Gyroscope().setTurn(-25).setCalibrate(true),
                     new Wait().setWaitTime(100),
                     new Gyroscope().setTurn(35).setCalibrate(true)
             },
@@ -28,13 +28,13 @@ public class ClaimZoneAuto extends AutonomousBase {
 
             },
             {
-                    new Gyroscope().setTurn(-120).setCalibrate(true),
+                    new Gyroscope().setTurn(29).setCalibrate(false),
                     new TeamElementDrop(),
-                    new Gyroscope().setTurn(-45).setCalibrate(true),
+                    new Gyroscope().setTurn(-45).setCalibrate(false),
             },
             {
-                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(36, 36),
-                    new Gyroscope().setTurn(-120).setCalibrate(true),
+                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(25, 25),
+                    new Gyroscope().setTurn(-118).setCalibrate(true),
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(36, 36)
             },
             {
@@ -43,11 +43,18 @@ public class ClaimZoneAuto extends AutonomousBase {
                     new TeamElementDrop()
             },
             {
+                    new Gyroscope().setTurn(36).setCalibrate(false),
                     new Wait(),
                     new Wait(),
-                    new Gyroscope().setTurn(-120).setCalibrate(true),
             },
-            {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(77, 77)}
+
+            {
+                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-68, -68),
+                    new Wait(),
+                    new Gyroscope().setTurn(-120).setCalibrate(false),
+            },
+            {   new Wait(),
+                new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(77, 77)}
 
     };
 
