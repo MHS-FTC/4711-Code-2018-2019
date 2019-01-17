@@ -19,7 +19,7 @@ public class ClaimZoneAuto extends AutonomousBase {
             {
                     new Gyroscope().setTurn(-25).setCalibrate(true),
                     new Wait().setWaitTime(100),
-                    new Gyroscope().setTurn(35).setCalibrate(true)
+                    new Gyroscope().setTurn(25).setCalibrate(true)
             },
             {
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(34, 34),
@@ -45,13 +45,13 @@ public class ClaimZoneAuto extends AutonomousBase {
             {
                     new Gyroscope().setTurn(36).setCalibrate(false),
                     new Wait(),
-                    new Wait(),
+                    new Gyroscope().setTurn(-97).setCalibrate(false),
             },
 
             {
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-68, -68),
                     new Wait(),
-                    new Gyroscope().setTurn(-120).setCalibrate(false),
+                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(79, 79)
             },
             {   new Wait(),
                 new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(77, 77)}
