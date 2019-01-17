@@ -42,7 +42,7 @@ public class Gyroscope extends Module {
         telemetry.addLine("Steering Error: " + driveSteering);
 
         double leftPower, rightPower;
-        if (headingError < 0) {
+        if (headingError < 0) {//TODO test correction values (Note: at first glance the signs look correct)
             leftPower = -midPower + driveSteering;
             rightPower = midPower - driveSteering;
         } else {
