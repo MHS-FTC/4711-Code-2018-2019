@@ -19,9 +19,9 @@ public class MainTeleop extends OpMode {
 
         robot.drive.driveMecanum(gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x);
 
-        if (gamepad1.dpad_up) {
+        if (gamepad1.left_bumper) {
             robot.lifter.liftUp();
-        } else if (gamepad1.dpad_down) {
+        } else if (gamepad1.right_bumper) {
             robot.lifter.liftDown();
         } else {
             robot.lifter.liftStop();
