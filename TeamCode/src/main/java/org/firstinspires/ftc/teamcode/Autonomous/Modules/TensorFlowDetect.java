@@ -6,7 +6,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
-import org.firstinspires.ftc.teamcode.Utilitys.Constants;
 
 import java.util.List;
 
@@ -15,6 +14,20 @@ public class TensorFlowDetect extends Module {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
+
+    /*
+     * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
+     * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
+     * A Vuforia 'Development' license key, can be obtained free of charge from the Vuforia developer
+     * web site at https://developer.vuforia.com/license-manager.
+     *
+     * Vuforia license keys are always 380 characters long, and look as if they contain mostly
+     * random data. As an example, here is a example of a fragment of a valid key:
+     *      ... yIgIzTqZ4mWjk9wd3cZO9T1axEqzuhxoGlfOOI2dRzKS4T0hQ8kT ...
+     * Once you've obtained a license key, copy the string from the Vuforia web site
+     * and paste it in to your code on the next line, between the double quotes.
+     */
+    private static final String VUFORIA_KEY = "AdXMmqn/////AAABmRh3XbwuUk47htQWlvLAagRfLnQiyJYFz+z+VYmc9M7jdczNv4pOywI1mkZRo2VXE4IhEnx2islMHPISXKkScnqn6EeBTujCA078btOaAWV2Zk5E/PIIW+F0C8ohdjX6VsGottHZb/HNlrvUzADOY/p7SVJ2vLA3T6nH6ua788O42m2AVYafpM85YVJO4EHdQUPWBQlMrpPrhgMUxdbBOIXZ3aVYqrTWTfpcNqLIf4GyR20crk7M/paU5YkkshlgG8mPfUUJ8zgL5lz3hxULDZc32wQe836WEkaEgkaNJYTxcnrb1Qf/5+WOX7WbJGv6PWMbfUMB1i/n9n0UJLiJP+tdP1psy8ZSj/nhmTLoivK+";
 
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
@@ -129,7 +142,7 @@ public class TensorFlowDetect extends Module {
          */
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
-        parameters.vuforiaLicenseKey = Constants.VUFORIA_KEY;
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
         parameters.cameraName = robot.hardwareMap.get(WebcamName.class, "Webcam");
 
         //  Instantiate the Vuforia engine
