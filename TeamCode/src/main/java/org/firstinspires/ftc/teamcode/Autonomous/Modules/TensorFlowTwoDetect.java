@@ -31,7 +31,7 @@ public class TensorFlowTwoDetect extends Module {
     private boolean isDone = false;
     private int mineralPos = 1;//By default assume the center position
     private double startTime;
-    private final int TIMEOUT = 15 * 1000;//wait max of 15 seconds
+    private final int TIMEOUT = 10 * 1000;//wait max of 15 seconds
 
 
     @Override
@@ -78,19 +78,19 @@ public class TensorFlowTwoDetect extends Module {
                     }
 
                     //we are detecting the left two
-                    if (silverMineral1X != -1 && silverMineral2X != -1) {
+                    if (silverMineral1X != -1 && silverMineral2X != -1 && goldMineralX == -1) {
                         //gold must be on right if we can see both of the silver
-                        telemetry.addData("Gold Mineral Position", "Right");
+                        telemetry.log().add("Gold Mineral Position", "Right");
                         mineralPos = 2;
                         isDone = true;
-                    } else if (goldMineralX < silverMineral1X) {
+                    } else if (goldMineralX < silverMineral1X && silverMineral2X ==-1) {
                         //gold must be on left if the x value is less than the silver position
-                        telemetry.addData("Gold Mineral Position", "Left");
+                        telemetry.log().add("Gold Mineral Position", "Left");
                         mineralPos = 0;
                         isDone = true;
-                    } else {
+                    } else if (goldMineralX != -1 && silverMineral1X != -1){
                         //just assume center if its not left or right
-                        telemetry.addData("Gold Mineral Position", "Center");
+                        telemetry.log().add("Gold Mineral Position", "Center");
                         mineralPos = 1;
                         isDone = true;
                     }
