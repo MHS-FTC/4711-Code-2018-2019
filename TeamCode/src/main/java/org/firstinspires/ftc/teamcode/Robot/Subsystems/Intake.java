@@ -37,6 +37,9 @@ public class Intake extends SubSystem {
         release = hardwareDevices.servo.get(releaseName);
         intake = hardwareDevices.crservo.get(intakeName);
 
+        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         return true;
     }
 
