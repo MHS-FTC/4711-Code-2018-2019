@@ -1,12 +1,14 @@
 package org.firstinspires.ftc.teamcode.Autonomous.Testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.PidEncoderDrive;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.AutonomousBase;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.Robot.MechBot;
 
 @Autonomous(name = "PID Test v1")
+@Disabled
 public class PidTest extends AutonomousBase {
     private MechBot bot = new MechBot();
     private Module[][] steps = new Module[][]{
