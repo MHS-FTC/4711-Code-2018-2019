@@ -9,7 +9,7 @@ public class Lifter extends SubSystem {
     private String liftName;
 
     private DcMotor lift;
-
+    //TODO add limit switch
 
     private final double LIFT_SPEED = 1;
 

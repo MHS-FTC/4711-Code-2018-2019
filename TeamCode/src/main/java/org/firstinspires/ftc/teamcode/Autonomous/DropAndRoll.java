@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.Gyroscope;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.LiftDown;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.LiftDownLimit;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.PidEncoderDrive;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.AutonomousBase;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
@@ -13,7 +14,7 @@ public class DropAndRoll extends AutonomousBase {
     private Robot bot = new Robot();
     private Module[][] steps = new Module[][]{
 
-            {new LiftDown()},
+            {new LiftDownLimit()},
             {new Gyroscope().setTurn(90).setCalibrate(true)},
             {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(20, 20)},
             {new Gyroscope().setTurn(-90).setCalibrate(false)},
