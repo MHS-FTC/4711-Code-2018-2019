@@ -27,7 +27,7 @@ public class LiftDownLimit extends Module {
     @Override
     public void tick() {
         //if limit switch has been pressed then stop
-        if (!limit.getState()) {
+        if (!limit.getState()||!lift.getMotor().isBusy()) {
             isDone = true;
         }
         telemetry.addLine("Limit status: " + limit.getState());
