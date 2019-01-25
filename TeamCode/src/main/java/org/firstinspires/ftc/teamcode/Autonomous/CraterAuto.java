@@ -18,8 +18,6 @@ public class CraterAuto extends AutonomousBase {
             {new Gyroscope().setTurn(17).setCalibrate(false),
                     new Gyroscope().setTurn(17).setCalibrate(false),
                     new Gyroscope().setTurn(17).setCalibrate(false)},
-
-
             {
                     new Gyroscope().setTurn(-25).setCalibrate(false),
                     new Wait().setWaitTime(100),
@@ -29,10 +27,7 @@ public class CraterAuto extends AutonomousBase {
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(34, 34),
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(30, 30),
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(34, 34)
-
             },
-
-
             {
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(5, 5),
             },

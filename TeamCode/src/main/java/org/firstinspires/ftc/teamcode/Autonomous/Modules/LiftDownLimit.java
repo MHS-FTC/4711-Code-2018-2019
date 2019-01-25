@@ -19,7 +19,12 @@ public class LiftDownLimit extends Module {
         limit.setMode(DigitalChannel.Mode.INPUT);//set limit switch to input
 
         lift.getMotor().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lift.getMotor().setTargetPosition((int) (ROTATIONS * lift.getMotor().getMotorType().getTicksPerRev()));
+        if (lift.getMotor().getMotorType().getTicksPerRev() > 0) {
+            //normal motor that has been configured
+            lift.getMotor().setTargetPosition((int) (ROTATIONS * lift.getMotor().getMotorType().getTicksPerRev()));
+        } else {
+            lift.getMotor().setTargetPosition((int) (ROTATIONS * 145.6));//Assume 5202 yellow jacket
+        }
         lift.getMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
         lift.liftUp();
     }
@@ -27,7 +32,7 @@ public class LiftDownLimit extends Module {
     @Override
     public void tick() {
         //if limit switch has been pressed then stop
-        if (!limit.getState()||!lift.getMotor().isBusy()) {
+        if (!limit.getState() || !lift.getMotor().isBusy()) {
             isDone = true;
         }
         telemetry.addLine("Limit status: " + limit.getState());
