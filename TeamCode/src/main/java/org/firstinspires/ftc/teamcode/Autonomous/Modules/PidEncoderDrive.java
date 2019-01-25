@@ -161,7 +161,7 @@ public class PidEncoderDrive extends Module {
         leftController.setNoOscillation(true);//we don't want to change direction to correct to target
         rightController.setNoOscillation(true);
 
-        final double max = 0.8;
+        final double max = 0.85;
         leftController.setOutputRange(-max, max);
         rightController.setOutputRange(-max, max);
         return this;
