@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
@@ -23,6 +24,7 @@ public class Lifter extends SubSystem {
 
         lift = hardwareDevices.dcMotor.get(liftName);
 
+        lift.setDirection(DcMotorSimple.Direction.REVERSE);
         lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         lift.setTargetPosition(0);

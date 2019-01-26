@@ -54,7 +54,7 @@ public class Intake extends SubSystem {
     }
 
     public void driveArm(double power) {
-        armTargetPosition += power * 15;
+        armTargetPosition += power * 33;
 
         arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //arm.setTargetPosition(0);
