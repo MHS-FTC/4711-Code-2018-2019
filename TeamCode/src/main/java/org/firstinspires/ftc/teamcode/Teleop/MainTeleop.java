@@ -44,5 +44,6 @@ public class MainTeleop extends OpMode {
 
         robot.intake.driveArm(gamepad2.left_stick_y);
         telemetry.addLine("Arm Target:" + robot.intake.getArmTarget());
+        telemetry.addLine("Is lifter limit pressed?:"+robot.lifter.isPressed());
     }
 }

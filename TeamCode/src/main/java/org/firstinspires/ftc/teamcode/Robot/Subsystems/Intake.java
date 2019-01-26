@@ -1,9 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.*;
 import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
 
 public class Intake extends SubSystem {
@@ -14,9 +11,10 @@ public class Intake extends SubSystem {
     private String intakeName;
 
     private DcMotor arm;
+    private DcMotor intake;
     private Servo lock;
     private Servo release;
-    private CRServo intake;
+
 
 
     private final double ARM_SPEED = 0.8;
@@ -33,9 +31,15 @@ public class Intake extends SubSystem {
     public boolean init(HardwareMap hardwareDevices) {
 
         arm = hardwareDevices.dcMotor.get(armName);
+        intake = hardwareDevices.dcMotor.get(intakeName);
         lock = hardwareDevices.servo.get(lockName);
         release = hardwareDevices.servo.get(releaseName);
-        intake = hardwareDevices.crservo.get(intakeName);
+
+        arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        intake.setDirection(DcMotorSimple.Direction.REVERSE);
+        arm.setDirection(DcMotorSimple.Direction.REVERSE);
 
         return true;
     }

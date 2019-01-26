@@ -7,19 +7,22 @@ import org.firstinspires.ftc.teamcode.Robot.Subsystems.Lifter;
 
 public class LiftDownLimit extends Module {
     private Lifter lift;
-    private DigitalChannel limit;
+
     private final double ROTATIONS = 25.3;
     private boolean isDone = false;
 
     @Override
     public void start() {
         lift = (Lifter) robot.getSubSystem("Lifter");
-        limit = robot.hardwareMap.digitalChannel.get("limit");
 
-        limit.setMode(DigitalChannel.Mode.INPUT);//set limit switch to input
 
         lift.getMotor().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        lift.getMotor().setTargetPosition((int) (ROTATIONS * lift.getMotor().getMotorType().getTicksPerRev()));
+        if (lift.getMotor().getMotorType().getTicksPerRev() > 0) {
+            //normal motor that has been configured
+            lift.getMotor().setTargetPosition((int) (ROTATIONS * lift.getMotor().getMotorType().getTicksPerRev()));
+        } else {
+            lift.getMotor().setTargetPosition((int) (ROTATIONS * 145.6));//Assume 5202 yellow jacket
+        }
         lift.getMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
         lift.liftUp();
     }
@@ -27,10 +30,9 @@ public class LiftDownLimit extends Module {
     @Override
     public void tick() {
         //if limit switch has been pressed then stop
-        if (!limit.getState()) {
+        if (lift.isPressed() || !lift.getMotor().isBusy()) {
             isDone = true;
         }
-        telemetry.addLine("Limit status: " + limit.getState());
     }
 
     @Override
