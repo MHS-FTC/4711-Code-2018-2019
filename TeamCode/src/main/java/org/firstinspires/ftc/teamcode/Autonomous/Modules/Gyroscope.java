@@ -5,10 +5,12 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 
 public class Gyroscope extends Module {
+    private static boolean hasCalibrated = false;
+
     private boolean isDone = false;
     private int targetDegrees = 0;
     private GyroSensor gyro;
-    private boolean calibrate = true;
+    private boolean calibrate = false;
 
     private final double midPower = 0.3;
     private final double maxPower = 0.8;
@@ -18,13 +20,14 @@ public class Gyroscope extends Module {
     public void start() {
         gyro = robot.hardwareMap.gyroSensor.get("gyro");
         gyro.resetZAxisIntegrator();
-        if (calibrate) {
+        if (calibrate || !hasCalibrated) {
             telemetry.addLine("Calibrating Gyro...");
             gyro.calibrate();
             while (gyro.isCalibrating()) {
                 //wait for calibration to finish
                 telemetry.addLine("Calibrating Gyro...");
             }
+            hasCalibrated = true;
         }
     }
 
