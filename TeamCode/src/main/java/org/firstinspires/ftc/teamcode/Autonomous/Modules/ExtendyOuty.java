@@ -6,7 +6,7 @@ import org.firstinspires.ftc.teamcode.Robot.Subsystems.Intake;
 public class ExtendyOuty extends Module {
     private double startTime;
 
-    private final double ENCODER_ROTATIONS_TO_EXTEND = 0.7;
+    private final double ENCODER_ROTATIONS_TO_EXTEND = -2;
     private final int TIME_TO_WAIT = 5000;//wait 5 seconds
 
     @Override
