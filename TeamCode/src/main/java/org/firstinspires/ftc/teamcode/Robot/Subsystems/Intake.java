@@ -66,6 +66,11 @@ public class Intake extends SubSystem {
         return (int) armTargetPosition;
     }
 
+    public void setArmTarget(int position){
+        arm.setTargetPosition(position);
+        armTargetPosition = position;
+    }
+
     public void intakeSpeed(double speed) {
         intake.setPower(speed);
     }
