@@ -25,12 +25,12 @@ public class CraterAuto extends AutonomousBase {
                     new Gyroscope().setTurn(25).setCalibrate(false)
             },
             {
-                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(32, 32),
+                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(30, 30),
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(28, 28),
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(32, 32)
             },
 
-            {       new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-32, -32),
+            {       new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-30, -30),
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-28, -28),
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-32, -32)
             },
@@ -41,9 +41,9 @@ public class CraterAuto extends AutonomousBase {
                     new Gyroscope().setTurn(-25).setCalibrate(false)
             },
             { new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(10, 10)},
-            {new Gyroscope().setTurn(-50).setCalibrate(false)},
+            {new Gyroscope().setTurn(-55).setCalibrate(false)},
             {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(43, 43)},
-            {new Gyroscope().setTurn(-66).setCalibrate(false)},
+            {new Gyroscope().setTurn(-62).setCalibrate(false)},
             {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(60, 60)},
             {new TeamElementDrop()},
             {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-72, -72)},
