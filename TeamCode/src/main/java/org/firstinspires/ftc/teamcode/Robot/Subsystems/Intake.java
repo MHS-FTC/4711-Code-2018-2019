@@ -22,8 +22,8 @@ public class Intake extends SubSystem {
     private final double LOCK_UP = 0.95;
     private final double LOCK_DOWN = 0.07;
 
-    private final double RELEASE = 0.05;
-    private final double UNRELEASE = 0.95;
+    private final double RELEASE = 0.95;
+    private final double UNRELEASE = 0.05;
 
     private double armTargetPosition = 0;
 
