@@ -114,6 +114,7 @@ public class TensorFlowTwoDetect extends Module {
         if (tfod != null) {
             tfod.shutdown();
         }
+        tfod = null;
         return mineralPos;
     }
 
@@ -145,6 +146,8 @@ public class TensorFlowTwoDetect extends Module {
         int tfodMonitorViewId = robot.hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", robot.hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        //tfodParameters.minimumConfidence = 0.5;
+        telemetry.log().add("Current minimum Tensorflow confidence: " + tfodParameters.minimumConfidence);
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
     }
