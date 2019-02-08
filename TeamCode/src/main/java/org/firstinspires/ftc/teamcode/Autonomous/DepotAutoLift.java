@@ -17,8 +17,8 @@ public class DepotAutoLift extends AutonomousBase {
             {new TensorFlowTwoDetect()},
             {new Gyroscope().setTurn(17).setCalibrate(false),
                     new Gyroscope().setTurn(17).setCalibrate(false),
-                    new Gyroscope().setTurn(17).setCalibrate(false)},
-
+                    new Gyroscope().setTurn(17).setCalibrate(false)
+            },
 
             {
                     new Gyroscope().setTurn(-25).setCalibrate(false),

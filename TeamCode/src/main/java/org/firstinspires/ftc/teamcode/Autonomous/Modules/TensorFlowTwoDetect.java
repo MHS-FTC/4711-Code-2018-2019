@@ -31,7 +31,7 @@ public class TensorFlowTwoDetect extends Module {
     private boolean isDone = false;
     private int mineralPos = 1;//By default assume the center position
     private double startTime;
-    private final int TIMEOUT = 10 * 1000;//wait max of 15 seconds
+    private final int TIMEOUT = 7 * 1000;//wait max of 7 seconds
 
 
     @Override
