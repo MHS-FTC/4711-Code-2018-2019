@@ -12,8 +12,7 @@ public class ExtendyOuty extends Module {
     @Override
     public void start() {
         Intake intake = (Intake) robot.getSubSystem("Intake");
-        intake.setArmTarget((int) (ENCODER_ROTATIONS_TO_EXTEND * 16 * 1120));//16 to 1 ratio and 1120 encoder ticks for a 40 motor
-        intake.driveArm(0);
+        intake.goToArmTarget((int) (ENCODER_ROTATIONS_TO_EXTEND * 16 * 1120));//16 to 1 ratio and 1120 encoder ticks for a 40 motor
         startTime = robot.getTimeMilliseconds();
     }
 

@@ -46,8 +46,13 @@ public class MainTeleop extends OpMode {
         }
 
         robot.intake.intakeSpeed(gamepad2.right_stick_y);
-
         robot.intake.driveArm(gamepad2.left_stick_y);
+        if(gamepad2.dpad_up){
+            robot.intake.goToUpPosition();
+        } else if (gamepad2.dpad_down) {
+            robot.intake.goToDownPosition();
+        }
+
         telemetry.addLine("Arm Target:" + robot.intake.getArmTarget());
         telemetry.addLine("Is lifter limit pressed?:"+robot.lifter.isPressed());
     }
