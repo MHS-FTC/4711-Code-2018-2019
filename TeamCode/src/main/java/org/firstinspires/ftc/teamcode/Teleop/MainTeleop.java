@@ -2,15 +2,20 @@ package org.firstinspires.ftc.teamcode.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
 @TeleOp(name = "MAIN Teleop")
 public class MainTeleop extends OpMode {
     private Robot robot = new Robot();
-
     @Override
     public void init() {
         robot.init(hardwareMap);
+    }
+
+    @Override
+    public void start(){
+        robot.lifter.goToPreLiftHeight();
     }
 
     @Override

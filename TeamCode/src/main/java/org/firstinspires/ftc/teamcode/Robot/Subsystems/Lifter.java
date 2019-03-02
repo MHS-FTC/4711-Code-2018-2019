@@ -19,6 +19,12 @@ public class Lifter extends SubSystem {
 
     private long stoppedTime;
 
+    //TODO have a preset value for upEncoderPosition so it can do an estimate if needed
+    private int PRE_LIFT_ENCODER_TICKS = (int) (8.5 * 600);//TODO adjust this value
+    private int upEncoderPosition = PRE_LIFT_ENCODER_TICKS;//the position of the encoder when lifter is all the way up//starts not moving
+    //1500 is 2.5 cm
+    //32.5 - 24.5 = 8.5
+
     @Override
     public boolean init(HardwareMap hardwareDevices) {
 
@@ -72,8 +78,19 @@ public class Lifter extends SubSystem {
         }
     }
 
+    public void goToPreLiftHeight() {
+        isPressed();
+        lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        lift.setTargetPosition(upEncoderPosition - PRE_LIFT_ENCODER_TICKS);
+        lift.setPower(LIFT_SPEED);
+    }
+
     public boolean isPressed() {
-        return !limit.getState();
+        boolean pressed = !limit.getState();
+        if (pressed) {
+            upEncoderPosition = lift.getCurrentPosition();
+        }
+        return pressed;
     }
 
     public DcMotor getMotor() {
