@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.Robot.Subsystems.MecanumDriveSubsystem;
 
 public class Robot extends RobotBase {
 
-    public Intake intake = new Intake().setMotorNames("arm", "lock", "release", "intake");
+    public Intake intake = new Intake().setMotorNames("arm", "lock", "release", "intake").setLimitName("armLimit");
     public Lifter lifter = new Lifter().setDeviceNames("lifter", "limit");
     public MecanumDriveSubsystem drive = new MecanumDriveSubsystem().setMotorNames("leftFront", "rightFront", "leftBack", "rightBack");
     public ElementFling fling = null;//for programs

@@ -18,7 +18,8 @@ public class Intake extends SubSystem {
     private DigitalChannel limit;
 
 
-    private final double ARM_SPEED = 0.8;
+    private final double ARM_SPEED = 0.9;
+    private final double DOWN_DISABILITY = 0.1;//how much to slow down arm if going down to keep up with the help we are getting from gravity
 
     private final double LOCK_UP = 0.95;
     private final double LOCK_DOWN = 0.07;
@@ -30,9 +31,10 @@ public class Intake extends SubSystem {
     how many encoder ticks the target must change by before an updated command is sent to the motor
     this is mostly so if the joystick is not actively being manipulated, other commands can run
     */
-    private final int TARGETING_DEADZONE = 5;
+    private final int TARGETING_DEADZONE = 1;
+    private final int TARGET_DIFF = 37;//change target by this amount each time if not on target
 
-    private double ARM_UP_TARGETING_DIFFERENCE = 16 * 0.27;// this is in motor rotations and multiplied in 'init' by encoder ticks per rev
+    private double ARM_UP_TARGETING_DIFFERENCE = 2.15;// this is in motor rotations and multiplied in 'init' by encoder ticks per rev
     private double armTargetPosition = 0;
     private int armDownLocation = 0;
     private int armUpLocation = 0;
@@ -77,15 +79,18 @@ public class Intake extends SubSystem {
     }
 
     public void driveArm(double power) {
-        armTargetPosition += power * 33;
+        armTargetPosition += power * TARGET_DIFF;
 
         if (inDownPosition()) {//don't run motor if we are in the down position
-            armTargetPosition = arm.getCurrentPosition();
             armDownLocation = arm.getCurrentPosition();
             armUpLocation = (int) (armDownLocation - ARM_UP_TARGETING_DIFFERENCE);//init the up arm position
         }
+        if (inDownPosition() && power > 0) {//only reset target position if the driver is trying to go down more
+            armTargetPosition = arm.getCurrentPosition();
+        }
 
-        if (Math.abs(armTargetPosition - arm.getTargetPosition()) > TARGETING_DEADZONE) {
+        //if (Math.abs(armTargetPosition - arm.getTargetPosition()) > TARGETING_DEADZONE) {
+        if (Math.abs(power) > 0.01) {
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             //arm.setTargetPosition(0);
             arm.setPower(ARM_SPEED);
@@ -97,18 +102,19 @@ public class Intake extends SubSystem {
         if (armDownLocation != 0) {//only move if we know correct positions
             //down is positive, down location will generally always be greater than the current position
             if (armDownLocation - armTargetPosition > TARGETING_DEADZONE) {
-                goToArmTarget(getArmTarget() + TARGETING_DEADZONE);
+                goToArmTarget(getArmTarget() + TARGET_DIFF);
             }
         }
+        arm.setPower(ARM_SPEED-DOWN_DISABILITY);
     }
 
     public void goToUpPosition() {
         if (armDownLocation != 0) {//only move if we know correct positions
             //up is negative, up location will generally always be less than the current position
             if (armTargetPosition - armUpLocation > TARGETING_DEADZONE) {
-                goToArmTarget(getArmTarget() - TARGETING_DEADZONE);
+                goToArmTarget(getArmTarget() - TARGET_DIFF);
             } else if (armTargetPosition - armUpLocation < -TARGETING_DEADZONE) {
-                goToArmTarget(getArmTarget() + TARGETING_DEADZONE);
+                goToArmTarget(getArmTarget() + TARGET_DIFF);
             }
         }
     }
