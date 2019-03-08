@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.Teleop.Testing;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Robot.MechBot;
 
+@Disabled
 @TeleOp(name = "Mecanum Teleop", group = "test")
 public class MechDriveTest extends OpMode {
     private MechBot robot = new MechBot();
