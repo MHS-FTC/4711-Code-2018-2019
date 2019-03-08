@@ -2,19 +2,19 @@ package org.firstinspires.ftc.teamcode.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
 @TeleOp(name = "MAIN Teleop")
 public class MainTeleop extends OpMode {
     private Robot robot = new Robot();
+
     @Override
     public void init() {
         robot.init(hardwareMap);
     }
 
     @Override
-    public void start(){
+    public void start() {
         robot.lifter.goToPreLiftHeight();
     }
 
@@ -28,6 +28,8 @@ public class MainTeleop extends OpMode {
             robot.lifter.liftUp();
         } else if (gamepad1.right_bumper) {
             robot.lifter.liftDown();
+        } else if (gamepad2.x) {
+            robot.lifter.goToPreLiftHeight();
         } else {
             robot.lifter.liftStop();
         }
@@ -47,13 +49,13 @@ public class MainTeleop extends OpMode {
 
         robot.intake.intakeSpeed(gamepad2.right_stick_y);
         robot.intake.driveArm(gamepad2.left_stick_y);
-        if(gamepad2.dpad_up){
+        if (gamepad2.dpad_up) {
             robot.intake.goToUpPosition();
         } else if (gamepad2.dpad_down) {
             robot.intake.goToDownPosition();
         }
 
         telemetry.addLine("Arm Target:" + robot.intake.getArmTarget());
-        telemetry.addLine("Is lifter limit pressed?:"+robot.lifter.isPressed());
+        telemetry.addLine("Is lifter limit pressed?:" + robot.lifter.isPressed());
     }
 }

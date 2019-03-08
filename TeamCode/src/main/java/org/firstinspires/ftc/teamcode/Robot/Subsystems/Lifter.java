@@ -80,9 +80,11 @@ public class Lifter extends SubSystem {
 
     public void goToPreLiftHeight() {
         isPressed();
-        lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        lift.setTargetPosition(upEncoderPosition - PRE_LIFT_ENCODER_TICKS);
-        lift.setPower(LIFT_SPEED);
+        if (upEncoderPosition != PRE_LIFT_ENCODER_TICKS) {
+            lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            lift.setTargetPosition(upEncoderPosition - PRE_LIFT_ENCODER_TICKS);
+            lift.setPower(LIFT_SPEED);
+        }
     }
 
     public boolean isPressed() {
