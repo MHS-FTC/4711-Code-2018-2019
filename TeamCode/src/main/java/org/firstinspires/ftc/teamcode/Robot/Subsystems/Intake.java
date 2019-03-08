@@ -18,8 +18,9 @@ public class Intake extends SubSystem {
     private DigitalChannel limit;
 
 
-    private final double ARM_SPEED = 0.9;
-    private final double DOWN_DISABILITY = 0.1;//how much to slow down arm if going down to keep up with the help we are getting from gravity
+    private final double ARM_SPEED = 1.0;
+    private final double DOWN_SPEED_DIFFERENCE = 0.2;//how much to slow down arm if going down to keep up with the help we are getting from gravity
+    private final double MANUAL_SPEED_DIFFERENCE = 0.1;
 
     private final double LOCK_UP = 0.95;
     private final double LOCK_DOWN = 0.07;
@@ -32,7 +33,8 @@ public class Intake extends SubSystem {
     this is mostly so if the joystick is not actively being manipulated, other commands can run
     */
     private final int TARGETING_DEADZONE = 1;
-    private final int TARGET_DIFF = 37;//change target by this amount each time if not on target
+    private final int TARGET_DIFF = 40;//change target by this amount each time if not on target
+    private final int MANUAL_TARGET_DIFF = TARGET_DIFF - 3;
 
     private double ARM_UP_TARGETING_DIFFERENCE = 2.15;// this is in motor rotations and multiplied in 'init' by encoder ticks per rev
     private double armTargetPosition = 0;
@@ -79,7 +81,7 @@ public class Intake extends SubSystem {
     }
 
     public void driveArm(double power) {
-        armTargetPosition += power * TARGET_DIFF;
+        armTargetPosition += power * MANUAL_TARGET_DIFF;
 
         if (inDownPosition()) {//don't run motor if we are in the down position
             armDownLocation = arm.getCurrentPosition();
@@ -93,7 +95,7 @@ public class Intake extends SubSystem {
         if (Math.abs(power) > 0.01) {
             arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             //arm.setTargetPosition(0);
-            arm.setPower(ARM_SPEED);
+            arm.setPower(ARM_SPEED-MANUAL_SPEED_DIFFERENCE);
             arm.setTargetPosition((int) armTargetPosition);
         }
     }
@@ -105,7 +107,7 @@ public class Intake extends SubSystem {
                 goToArmTarget(getArmTarget() + TARGET_DIFF);
             }
         }
-        arm.setPower(ARM_SPEED-DOWN_DISABILITY);
+        arm.setPower(ARM_SPEED- DOWN_SPEED_DIFFERENCE);
     }
 
     public void goToUpPosition() {
