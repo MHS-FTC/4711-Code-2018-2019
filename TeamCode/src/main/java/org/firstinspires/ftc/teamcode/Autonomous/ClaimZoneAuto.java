@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.AutonomousBase;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
-@Autonomous(name = "ClaimZoneAuto")
+@Autonomous(name = "ClaimZoneAuto no lift")
 public class ClaimZoneAuto extends AutonomousBase {
     private Robot bot = new Robot();
     private Module[][] steps = new Module[][]{

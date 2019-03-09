@@ -15,11 +15,21 @@ public class Robot extends RobotBase {
     public ElementFling fling = null;//for programs
 
     public PidEncoderDrive.PIDConfig PIDConfig = new PidEncoderDrive.PIDConfig()
+            .setPID(0.00205, 0.0004, 0.00061)
+            .setSettlingTime(2.4)
+            .setTolerance(200)
+            .setMaxSpeed(0.75)
+            .setWheelCircumference(12.56);
+
+    /*
+        //with 40s
+        public PidEncoderDrive.PIDConfig PIDConfig = new PidEncoderDrive.PIDConfig()
             .setPID(0.002, 0.0004, 0.0006)
             .setSettlingTime(2)
             .setTolerance(200)
             .setMaxSpeed(0.8)
             .setWheelCircumference(12.56);
+     */
 
     public Robot() {
 

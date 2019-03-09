@@ -6,7 +6,7 @@ import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.AutonomousBase;
 import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
-@Autonomous(name = "ClaimZoneAuto w/ lift")
+@Autonomous(name = "ClaimZoneAUTO w/ lift")
 public class DepotAutoLift extends AutonomousBase {
     private Robot bot = new Robot();
     private Module[][] steps = new Module[][]{

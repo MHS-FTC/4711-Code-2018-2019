@@ -19,7 +19,7 @@ public class Intake extends SubSystem {
 
 
     private final double ARM_SPEED = 1.0;
-    private final double DOWN_SPEED_DIFFERENCE = 0.2;//how much to slow down arm if going down to keep up with the help we are getting from gravity
+    private final double DOWN_SPEED_DIFFERENCE = 0.15;//how much to slow down arm if going down to keep up with the help we are getting from gravity
     private final double MANUAL_SPEED_DIFFERENCE = 0.1;
 
     private final double LOCK_UP = 0.95;
