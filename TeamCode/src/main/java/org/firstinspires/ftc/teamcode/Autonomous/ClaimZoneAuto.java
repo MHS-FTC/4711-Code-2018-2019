@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.ExtendyOuty;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.Gyroscope;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.PidEncoderDrive;
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.TeamElementDrop;
@@ -51,10 +52,13 @@ public class ClaimZoneAuto extends AutonomousBase {
             {
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-68, -68),
                     new Wait(),
-                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(79, 79)
+                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(80, 80)
             },
             {   new Wait(),
-                new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(77, 77)}
+                new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(77, 77)},
+            { new ExtendyOuty()}
+
+
 
     };
 

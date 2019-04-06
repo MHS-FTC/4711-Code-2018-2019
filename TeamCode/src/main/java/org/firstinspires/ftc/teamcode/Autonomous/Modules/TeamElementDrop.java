@@ -14,7 +14,7 @@ public class TeamElementDrop extends Module {
     public void start() {
         elementHook = robot.hardwareMap.servo.get("hook");
         startTime = robot.getTimeMilliseconds();
-        elementHook.setPosition(0.3);
+        elementHook.setPosition(0.4);
     }
 
     @Override
