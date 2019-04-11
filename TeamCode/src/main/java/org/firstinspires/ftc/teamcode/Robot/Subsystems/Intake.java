@@ -18,7 +18,7 @@ public class Intake extends SubSystem {
     private DigitalChannel limit;
 
 
-    private final double ARM_SPEED = 1.0;
+    private final double ARM_SPEED = 0.95;
     private final double DOWN_SPEED_DIFFERENCE = 0.15;//how much to slow down arm if going down to keep up with the help we are getting from gravity
     private final double MANUAL_SPEED_DIFFERENCE = 0.1;
 
@@ -33,7 +33,7 @@ public class Intake extends SubSystem {
     this is mostly so if the joystick is not actively being manipulated, other commands can run
     */
     private final int TARGETING_DEADZONE = 1;
-    private final int TARGET_DIFF = 40;//change target by this amount each time if not on target
+    private final int TARGET_DIFF = 55;//change target by this amount each time if not on target
     private final int MANUAL_TARGET_DIFF = TARGET_DIFF - 3;
 
     private double ARM_UP_TARGETING_DIFFERENCE = 2.15;// this is in motor rotations and multiplied in 'init' by encoder ticks per rev
