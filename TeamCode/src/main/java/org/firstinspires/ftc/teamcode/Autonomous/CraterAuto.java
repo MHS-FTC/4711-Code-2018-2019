@@ -13,7 +13,7 @@ public class CraterAuto extends AutonomousBase {
             {new LiftDownLimit()},
             {new Gyroscope().setTurn(-15).setCalibrate(true)},
             {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-4, -4)},
-            {new Gyroscope().setTurn(75).setCalibrate(false)},
+            {new Gyroscope().setTurn(70).setCalibrate(false)},
             {new TensorFlowTwoDetect()},
             {       new Gyroscope().setTurn(17).setCalibrate(false),
                     new Gyroscope().setTurn(17).setCalibrate(false),
@@ -49,8 +49,9 @@ public class CraterAuto extends AutonomousBase {
             {new Gyroscope().setTurn(-5)},
             {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-70, -70)},
             {new Gyroscope().setTurn(-180)},
-            {new ExtendyOuty()},
-            {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(3, 3)}
+            {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(9, 9)},
+            {new ExtendyOuty()}
+
 
 
 

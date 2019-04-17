@@ -58,7 +58,8 @@ public class DepotAutoLift extends AutonomousBase {
                     new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(79, 79)
             },
             {new Wait(),
-                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(77, 77)}
+                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(77, 77)},
+            {new ExtendyOuty()}
 
     };
 
