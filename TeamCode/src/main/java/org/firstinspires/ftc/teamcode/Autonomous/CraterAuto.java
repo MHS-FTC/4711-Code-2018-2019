@@ -11,9 +11,8 @@ public class CraterAuto extends AutonomousBase {
     private Robot bot = new Robot();
     private Module[][] steps = new Module[][]{
             {new LiftDownLimit()},
-            {new Gyroscope().setTurn(-15).setCalibrate(true)},
             {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-4, -4)},
-            {new Gyroscope().setTurn(70).setCalibrate(false)},
+            {new Gyroscope().setTurn(60).setCalibrate(false)},
             {new TensorFlowTwoDetect()},
             {       new Gyroscope().setTurn(17).setCalibrate(false),
                     new Gyroscope().setTurn(17).setCalibrate(false),
@@ -46,7 +45,7 @@ public class CraterAuto extends AutonomousBase {
             {new Gyroscope().setTurn(-66).setCalibrate(false)},
             {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(58, 58)},
             {new TeamElementDrop()},
-            {new Gyroscope().setTurn(-5)},
+            {new Gyroscope().setTurn(-3)},
             {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(-70, -70)},
             {new Gyroscope().setTurn(-180)},
             {new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(9, 9)},

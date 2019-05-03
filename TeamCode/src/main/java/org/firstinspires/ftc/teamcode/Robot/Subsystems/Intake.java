@@ -36,7 +36,7 @@ public class Intake extends SubSystem {
     private final int TARGET_DIFF = 55;//change target by this amount each time if not on target
     private final int MANUAL_TARGET_DIFF = TARGET_DIFF - 3;
 
-    private double ARM_UP_TARGETING_DIFFERENCE = 2.15;// this is in motor rotations and multiplied in 'init' by encoder ticks per rev
+    private double ARM_UP_TARGETING_DIFFERENCE = 2;// this is in motor rotations and multiplied in 'init' by encoder ticks per rev
     private double armTargetPosition = 0;
     private int armDownLocation = 0;
     private int armUpLocation = 0;

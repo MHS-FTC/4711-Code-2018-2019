@@ -8,7 +8,6 @@ import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.Robot.MechBot;
 
 @Autonomous(name = "PID Test v1")
-@Disabled
 public class PidTest extends AutonomousBase {
     private MechBot bot = new MechBot();
     private Module[][] steps = new Module[][]{
