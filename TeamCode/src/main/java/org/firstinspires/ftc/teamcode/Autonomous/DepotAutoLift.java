@@ -1,7 +1,12 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import org.firstinspires.ftc.teamcode.Autonomous.Modules.*;
+
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.ExtendyOuty;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.LiftDownLimit;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.TeamElementDrop;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.TensorFlowTwoDetect;
+import org.firstinspires.ftc.teamcode.Autonomous.Modules.Wait;
 import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.AutonomousBase;
 import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Premade.Gyroscope;
@@ -60,10 +65,8 @@ public class DepotAutoLift extends AutonomousBase {
                     new PIDEncoderDrive().setConfig(bot.PIDConfig).setDistances(79, 79)
             },
             {new Wait(),
-                    new PidEncoderDrive().setConfig(bot.PIDConfig).setDistances(77, 77)},
+                    new PIDEncoderDrive().setConfig(bot.PIDConfig).setDistances(77, 77)},
             {new ExtendyOuty()}
-                    new PIDEncoderDrive().setConfig(bot.PIDConfig).setDistances(77, 77)}
-
     };
 
 
