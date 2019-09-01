@@ -1,15 +1,15 @@
-package org.firstinspires.ftc.teamcode.Autonomous.Modules;
+package org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Premade;
 
 import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
 
 /**
- * Created by ethan.hampton on 11/17/2017.
+ * Created by Ethan Hampton on 24-Jun-2019.
  * Designed to wait for a certain amount of time
  */
 
 public class Wait extends Module {
     private double startTime;
-    private long waitTime = 1;
+    private long waitTime = 1000;//default wait time of one second
 
     public Wait setWaitTime(long waitTime) {
         this.waitTime = waitTime;

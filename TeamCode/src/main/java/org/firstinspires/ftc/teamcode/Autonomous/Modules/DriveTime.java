@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.Autonomous.Modules;
 
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
-import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SidedDriveSystemTemplate;
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
+import org.firstinspires.ftc.teamcode.FTC_Library.Robot.SubSystems.SidedDriveSystemTemplate;
 import org.firstinspires.ftc.teamcode.Utilitys.Constants;
 
 /**
@@ -12,7 +12,6 @@ import org.firstinspires.ftc.teamcode.Utilitys.Constants;
 
 public class DriveTime extends Module {
     private SidedDriveSystemTemplate drive;
-    private boolean isDone = false;
     private double startTime;
 
     private int driveTime;
@@ -29,16 +28,12 @@ public class DriveTime extends Module {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
         if ((robot.getTimeMilliseconds() - startTime) > driveTime) {
             drive.driveMecanum(0, 0, 0);
-            isDone = true;
+            return true;
         }
-    }
-
-    @Override
-    public boolean isDone() {
-        return isDone;
+        return false;
     }
 
 

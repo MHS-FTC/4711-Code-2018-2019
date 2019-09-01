@@ -5,7 +5,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
 
 import java.util.List;
 
@@ -41,7 +41,6 @@ public class TensorFlowDetect extends Module {
      */
     private TFObjectDetector tfod;
 
-    private boolean isDone = false;
     private int mineralPos = 1;//By default assume the center position
     private double startTime;
     private final int TIMEOUT = 15 * 1000;//wait max of 15 seconds
@@ -72,7 +71,7 @@ public class TensorFlowDetect extends Module {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
         if (tfod != null) {
             // getUpdatedRecognitions() will return null if no new information is available since
             // the last time that call was made.
@@ -96,15 +95,15 @@ public class TensorFlowDetect extends Module {
                         if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Left");
                             mineralPos = 0;
-                            isDone = true;
+                            return true;
                         } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
                             telemetry.addData("Gold Mineral Position", "Right");
                             mineralPos = 2;
-                            isDone = true;
+                            return true;
                         } else {
                             telemetry.addData("Gold Mineral Position", "Center");
                             mineralPos = 1;
-                            isDone = true;
+                            return true;
                         }
                     }
                 }
@@ -116,9 +115,10 @@ public class TensorFlowDetect extends Module {
         //looking for balls can take a long time so make sure we don't spend whole autonomous looking for balls
         if (startTime + TIMEOUT < robot.getTimeMilliseconds()) {
             //have exceeded timeout
-            isDone = true;
             telemetry.log().add("Tensorflow detection has exceeded timeout, moving on");
+            return true;
         }
+        return false;
     }
 
 
@@ -128,12 +128,6 @@ public class TensorFlowDetect extends Module {
             tfod.shutdown();
         }
         return mineralPos;
-    }
-
-
-    @Override
-    public boolean isDone() {
-        return isDone;
     }
 
     private void initVuforia() {

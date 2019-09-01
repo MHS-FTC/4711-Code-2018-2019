@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.Autonomous.Modules;
 
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
 
 public class TeamElementDrop extends Module {
 
@@ -18,15 +18,7 @@ public class TeamElementDrop extends Module {
     }
 
     @Override
-    public void tick() {
-
-    }
-
-    @Override
-    public boolean isDone() {
-        if (startTime + DELAY < robot.getTimeMilliseconds()) {
-            return true;
-        }
-        return false;
+    public boolean tick() {
+        return startTime + DELAY < robot.getTimeMilliseconds();
     }
 }

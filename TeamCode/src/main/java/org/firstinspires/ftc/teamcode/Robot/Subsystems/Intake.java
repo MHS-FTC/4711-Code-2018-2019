@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.*;
-import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
+import org.firstinspires.ftc.teamcode.FTC_Library.Robot.SubSystems.SubSystem;
 
 public class Intake extends SubSystem {
 

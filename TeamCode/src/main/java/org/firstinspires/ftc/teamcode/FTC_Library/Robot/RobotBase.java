@@ -1,9 +1,10 @@
-package org.firstinspires.ftc.teamcode.FTC_API.Robot;
+package org.firstinspires.ftc.teamcode.FTC_Library.Robot;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.DriveSystemTemplate;
-import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
+import org.firstinspires.ftc.teamcode.FTC_Library.Robot.SubSystems.DriveSystemTemplate;
+import org.firstinspires.ftc.teamcode.FTC_Library.Robot.SubSystems.SidedDriveSystemTemplate;
+import org.firstinspires.ftc.teamcode.FTC_Library.Robot.SubSystems.SubSystem;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -15,11 +16,17 @@ import java.util.HashMap;
  */
 
 public class RobotBase {
+    /**
+     * Try not to use the hardware map any more than you need it.
+     * If you do need it, it will do the job just fine
+     */
+    @Deprecated
+    public HardwareMap hardwareMap;
     private HashMap<String, SubSystem> subSystems = new HashMap<>();
     private String driveSystem = "";
-    public HardwareMap hardwareMap;
 
     private ElapsedTime time = new ElapsedTime();
+    private boolean firstLoop = true;//used to track if match has started
 
     /**
      * Adds subsystem to tracking by the internal system. This means it will receive all events and updates as needed.
@@ -64,6 +71,18 @@ public class RobotBase {
     }
 
     /**
+     *
+     * @return the subsystem the implements {@link DriveSystemTemplate} for use in driving the robot
+     */
+    public SidedDriveSystemTemplate getSidedDriveSystem() {
+        if (!driveSystem.isEmpty() && subSystems.get(driveSystem) instanceof SidedDriveSystemTemplate) {
+            return (SidedDriveSystemTemplate) subSystems.get(driveSystem);
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * registers all of the subsystems and prepares the robot
      *
      * @param hardwareMap the hardware map from FTC SDK
@@ -79,8 +98,7 @@ public class RobotBase {
             }
         }
 
-        this.hardwareMap = hardwareMap;//add hardware map to robot for easy access
-        startTime();//start time keeping
+        this.hardwareMap = hardwareMap;
         return noErrors;
     }
 
@@ -101,6 +119,11 @@ public class RobotBase {
      * It may incur a slight performance disadvantage but shouldn't be too impacting
      */
     public void tick() {
+        //start time keeping
+        if(firstLoop){
+            firstLoop = false;
+            startTime();//start time keeping
+        }
         for (SubSystem s :
                 subSystems.values()) {
             s.tick();
@@ -115,7 +138,11 @@ public class RobotBase {
         time.reset();
     }
 
-    public double getTimeMilliseconds() {
-        return time.milliseconds();
+    /**
+     *
+     * @return returns time since first call of {@code tick()} method for this robot
+     */
+    public long getTimeMilliseconds() {
+        return (long) time.milliseconds();
     }
 }

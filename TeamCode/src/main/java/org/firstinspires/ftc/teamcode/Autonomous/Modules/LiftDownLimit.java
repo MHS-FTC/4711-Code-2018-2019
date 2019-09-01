@@ -1,15 +1,14 @@
 package org.firstinspires.ftc.teamcode.Autonomous.Modules;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
+
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.Lifter;
 
 public class LiftDownLimit extends Module {
     private Lifter lift;
 
     private final double ROTATIONS = 25.3;
-    private boolean isDone = false;
 
     @Override
     public void start() {
@@ -28,11 +27,9 @@ public class LiftDownLimit extends Module {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
         //if limit switch has been pressed then stop
-        if (lift.isPressed()){// || !lift.getMotor().isBusy()) {
-            isDone = true;
-        }
+        return lift.isPressed();
     }
 
     @Override
@@ -40,10 +37,5 @@ public class LiftDownLimit extends Module {
         lift.liftStop();
         lift.getMotor().setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         return positionInArray;
-    }
-
-    @Override
-    public boolean isDone() {
-        return isDone;
     }
 }

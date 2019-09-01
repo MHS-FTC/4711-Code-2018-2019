@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode.FTC_API.Autonomous;
+package org.firstinspires.ftc.teamcode.FTC_Library.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
-import org.firstinspires.ftc.teamcode.FTC_API.Robot.RobotBase;
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
+import org.firstinspires.ftc.teamcode.FTC_Library.Robot.RobotBase;
 
 /**
  * Created by Ethan Hampton on 8/19/17.
@@ -55,12 +55,13 @@ abstract public class AutonomousBase extends OpMode {
                 isFirstLoop = false;
             }
 
-            current.tick();//runs tick for current module
+            boolean currentIsDone = current.tick();//run the current module (the return type tells us if it is done)
 
-            if (current.isDone()) {//if the current module is done
+            if (currentIsDone) {//if the current module is done
                 currentStep++;//get new module, start and initialize it
 
                 currentOption = current.stop();//stop current module and get what option the module wants for next step
+                int selectedOption = currentOption;//insure the selected option is passed through to next module even if that isn't the one selected
 
                 if (currentStep <= totalSteps - 1) {//insures we have not gone through all our steps
                     int maxOption = steps[currentStep].length - 1;//get amount of modules currently available in the next step
@@ -68,9 +69,13 @@ abstract public class AutonomousBase extends OpMode {
                         currentOption = 0;//otherwise use default of 0
                     }
 
-                    current = steps[currentStep][currentOption];
-                    current.init(robot, currentOption, telemetry);//initialize it with the passed through option so it can be passed through multiple times
-                    current.start();
+                    current = steps[currentStep][currentOption];//get new current module
+                    while (current == null) {//if current module is null, loop till that is not the case
+                        currentStep++;
+                        current = steps[currentStep][currentOption];
+                    }
+                    current.init(robot, selectedOption, telemetry);//initialize it with the passed through option so it can be passed through multiple times
+                    current.start();//start current module
                 } else {
                     isDone = true;
                 }

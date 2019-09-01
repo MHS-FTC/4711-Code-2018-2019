@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.Autonomous.Modules;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
-import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SidedDriveSystemTemplate;
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
+import org.firstinspires.ftc.teamcode.FTC_Library.Robot.SubSystems.SidedDriveSystemTemplate;
 import org.firstinspires.ftc.teamcode.Utilitys.Constants;
 
 /**
@@ -83,7 +83,7 @@ public class OLDEncoderDrive extends Module {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
         int currentLeft = 0;
         int motorsLeft = 0;
         int currentRight = 0;
@@ -107,15 +107,7 @@ public class OLDEncoderDrive extends Module {
             rightSpeed = 0;
         }
 
-        if (leftSpeed == 0 && rightSpeed == 0) {
-            isDone = true;
-        }
-    }
-
-
-    @Override
-    public boolean isDone() {
-        return isDone;
+        return leftSpeed == 0 && rightSpeed == 0;
     }
 
     @Override

@@ -1,6 +1,7 @@
-package org.firstinspires.ftc.teamcode.FTC_API.Examples;
+package org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Premade;
 
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
+import org.firstinspires.ftc.teamcode.FTC_Library.Robot.SubSystems.SidedDriveSystemTemplate;
 
 /**
  * Created by Ethan Hampton on 8/19/17.
@@ -8,9 +9,8 @@ import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
  * Simple drive for time module
  */
 
-class DriveTime extends Module {
-    private Drive drive;
-    private boolean isDone = false;
+public class DriveTime extends Module {
+    private SidedDriveSystemTemplate drive;
     private double startTime;
 
     private double leftSpeed;
@@ -19,30 +19,20 @@ class DriveTime extends Module {
 
     @Override
     public void start() {
-        drive = (Drive) robot.getSubSystem(Drive.ID);
+        drive = robot.getSidedDriveSystem();
         startTime = robot.getTimeMilliseconds();
 
-        drive.drive(leftSpeed, rightSpeed);
+        drive.driveTank(leftSpeed, rightSpeed);
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
         if ((robot.getTimeMilliseconds() - startTime) > driveTime) {
-            drive.drive(0, 0);
-            isDone = true;
+            drive.driveTank(0, 0);
+            return true;
         }
+        return false;
     }
-
-    @Override
-    public boolean isDone() {
-        return isDone;
-    }
-
-    @Override
-    public String[] requiredSubSystems() {
-        return new String[]{Drive.ID};
-    }
-
 
     public DriveTime setSpeeds(double left, double right) {
         leftSpeed = left;
