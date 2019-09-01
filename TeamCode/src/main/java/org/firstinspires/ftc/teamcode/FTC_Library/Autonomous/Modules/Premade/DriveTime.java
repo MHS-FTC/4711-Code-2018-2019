@@ -1,8 +1,7 @@
-package org.firstinspires.ftc.teamcode.Autonomous.Modules;
+package org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Premade;
 
 import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.FTC_Library.Robot.SubSystems.SidedDriveSystemTemplate;
-import org.firstinspires.ftc.teamcode.Utilitys.Constants;
 
 /**
  * Created by Ethan Hampton on 8/19/17.
@@ -14,33 +13,30 @@ public class DriveTime extends Module {
     private SidedDriveSystemTemplate drive;
     private double startTime;
 
+    private double leftSpeed;
+    private double rightSpeed;
     private int driveTime;
-    private double forwardSpeed = Constants.DEFAULT_SPEED;
-    private double turnSpeed = 0;
-    private double strafeSpeed = 0;
 
     @Override
     public void start() {
-        drive = (SidedDriveSystemTemplate) robot.getDriveSystem();
+        drive = robot.getSidedDriveSystem();
         startTime = robot.getTimeMilliseconds();
 
-        drive.driveMecanum(forwardSpeed, turnSpeed, strafeSpeed);
+        drive.driveTank(leftSpeed, rightSpeed);
     }
 
     @Override
     public boolean tick() {
         if ((robot.getTimeMilliseconds() - startTime) > driveTime) {
-            drive.driveMecanum(0, 0, 0);
+            drive.driveTank(0, 0);
             return true;
         }
         return false;
     }
 
-
-    public DriveTime setSpeeds(double forwardSpeed, double turnSpeed, double strafeSpeed) {
-        this.forwardSpeed = forwardSpeed;
-        this.turnSpeed = turnSpeed;
-        this.strafeSpeed = strafeSpeed;
+    public DriveTime setSpeeds(double left, double right) {
+        leftSpeed = left;
+        rightSpeed = right;
         return this;
     }
 

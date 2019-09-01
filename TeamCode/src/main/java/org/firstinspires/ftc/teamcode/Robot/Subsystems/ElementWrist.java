@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
+import org.firstinspires.ftc.teamcode.FTC_Library.Robot.SubSystems.SubSystem;
 import org.firstinspires.ftc.teamcode.Utilitys.Constants;
 
 public class ElementWrist extends SubSystem {

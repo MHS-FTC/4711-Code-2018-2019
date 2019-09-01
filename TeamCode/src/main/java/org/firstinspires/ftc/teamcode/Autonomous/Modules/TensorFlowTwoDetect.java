@@ -5,7 +5,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
 import org.firstinspires.ftc.teamcode.Utilitys.Constants;
 
 import java.util.List;
@@ -28,7 +28,6 @@ public class TensorFlowTwoDetect extends Module {
      */
     private TFObjectDetector tfod;
 
-    private boolean isDone = false;
     private int mineralPos = 1;//By default assume the center position
     private double startTime;
     private final int TIMEOUT = 7 * 1000;//wait max of 7 seconds
@@ -55,7 +54,7 @@ public class TensorFlowTwoDetect extends Module {
     }
 
     @Override
-    public void tick() {
+    public boolean tick() {
         if (tfod != null) {
             // getUpdatedRecognitions() will return null if no new information is available since
             // the last time that call was made.
@@ -82,17 +81,17 @@ public class TensorFlowTwoDetect extends Module {
                         //gold must be on right if we can see both of the silver
                         telemetry.log().add("Gold Mineral Position", "Right");
                         mineralPos = 2;
-                        isDone = true;
-                    } else if (goldMineralX < silverMineral1X && silverMineral2X ==-1) {
+                        return true;
+                    } else if (goldMineralX < silverMineral1X && silverMineral2X == -1) {
                         //gold must be on left if the x value is less than the silver position
                         telemetry.log().add("Gold Mineral Position", "Left");
                         mineralPos = 0;
-                        isDone = true;
-                    } else if (goldMineralX != -1 && silverMineral1X != -1){
+                        return true;
+                    } else if (goldMineralX != -1 && silverMineral1X != -1) {
                         //just assume center if its not left or right
                         telemetry.log().add("Gold Mineral Position", "Center");
                         mineralPos = 1;
-                        isDone = true;
+                        return true;
                     }
                 }
                 telemetry.update();
@@ -103,9 +102,10 @@ public class TensorFlowTwoDetect extends Module {
         //looking for balls can take a long time so make sure we don't spend whole autonomous looking for balls
         if (startTime + TIMEOUT < robot.getTimeMilliseconds()) {
             //have exceeded timeout
-            isDone = true;
             telemetry.log().add("Tensorflow detection has exceeded timeout, moving on");
+            return true;
         }
+        return false;
     }
 
 
@@ -116,12 +116,6 @@ public class TensorFlowTwoDetect extends Module {
         }
         tfod = null;
         return mineralPos;
-    }
-
-
-    @Override
-    public boolean isDone() {
-        return isDone;
     }
 
     private void initVuforia() {

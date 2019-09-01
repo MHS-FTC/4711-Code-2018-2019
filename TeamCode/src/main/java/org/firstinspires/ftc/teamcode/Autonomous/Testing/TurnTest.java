@@ -2,10 +2,11 @@ package org.firstinspires.ftc.teamcode.Autonomous.Testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import org.firstinspires.ftc.teamcode.Autonomous.Modules.Gyroscope;
+
 import org.firstinspires.ftc.teamcode.Autonomous.Modules.Wait;
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.AutonomousBase;
-import org.firstinspires.ftc.teamcode.FTC_API.Autonomous.Modules.Module;
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.AutonomousBase;
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Module;
+import org.firstinspires.ftc.teamcode.FTC_Library.Autonomous.Modules.Premade.Gyroscope;
 import org.firstinspires.ftc.teamcode.Robot.MechBot;
 
 @Autonomous(name = "Turn Test v1")

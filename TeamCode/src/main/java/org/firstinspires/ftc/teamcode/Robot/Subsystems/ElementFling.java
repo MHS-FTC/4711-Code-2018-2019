@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import org.firstinspires.ftc.teamcode.FTC_API.Robot.SubSystems.SubSystem;
+import org.firstinspires.ftc.teamcode.FTC_Library.Robot.SubSystems.SubSystem;
 
 public class ElementFling extends SubSystem {
 
